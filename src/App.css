@@ -1,0 +1,90 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+.team-card {
+  position: relative;
+  width: 250px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 15px rgb(0 0 0 / 0.1);
+  cursor: pointer;
+  background: #fff;
+  transition: transform 0.3s ease;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.team-card:hover {
+  transform: translateY(-8px);
+}
+
+.team-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+.team-info {
+  padding: 15px;
+  text-align: center;
+  background-color: #fef9f0; /* Light cream background */
+}
+
+.team-info h3 {
+  margin: 0;
+  color: #7a664e;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.team-info p {
+  margin: 5px 0 0;
+  font-size: 0.9rem;
+  color: #7a664e;
+  font-weight: 500;
+}
+
+/* Overlay hidden by default */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(22, 19, 17, 0.9); /* Dark transparent overlay */
+  color: #f5cc55; /* Golden yellow text */
+  padding: 20px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: 0 0 8px 8px;
+}
+
+.team-card:hover .overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.overlay h3 {
+  margin: 0 0 5px;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #f5cc55;
+}
+
+.overlay p {
+  margin: 0 0 10px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.social-icons a {
+  margin: 0 7px;
+  color: #f5cc55;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #fff;
+}
