@@ -1,29 +1,61 @@
+import React from "react";
 import CountUp from "react-countup";
+import { FaHeart, FaUsers, FaMale, FaFemale } from "react-icons/fa";
 
-const countersData = [
-  { label: "Total Biodata", count: 1200, icon: "📋" },
-  { label: "Female Biodata", count: 700, icon: "👩" },
-  { label: "Male Biodata", count: 500, icon: "👨" },
-  { label: "Total Marriages", count: 350, icon: "💍" },
+const stats = [
+  {
+    icon: <FaHeart className="text-brown-700 text-xl" />,
+    value: 2000,
+    suffix: "K",
+    label: "COUPLES PAIRED",
+    displayValue: 2,
+  },
+  {
+    icon: <FaUsers className="text-brown-700 text-xl" />,
+    value: 4000,
+    suffix: "+",
+    label: "REGISTERENTS",
+    displayValue: 4000,
+  },
+  {
+    icon: <FaMale className="text-brown-700 text-xl" />,
+    value: 1600,
+    suffix: "+",
+    label: "MENS",
+    displayValue: 1600,
+  },
+  {
+    icon: <FaFemale className="text-brown-700 text-xl" />,
+    value: 2000,
+    suffix: "+",
+    label: "WOMENS",
+    displayValue: 2000,
+  },
 ];
 
 const SuccessCounter = () => {
   return (
-    <section className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-12 px-4 rounded-lg max-w-6xl mx-auto mt-12">
-      <h2 className="text-3xl font-bold text-center mb-10">Success Counter</h2>
-
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
-        {countersData.map(({ label, count, icon }, index) => (
-          <div key={index} className="flex flex-col items-center">
-            <div className="text-6xl mb-2">{icon}</div>
-            <CountUp
-              end={count}
-              duration={2}
-              className="text-4xl font-extrabold"
-              start={0}
-              separator=","
-            />
-            <span className="mt-1 text-lg">{label}</span>
+    <section className="bg-[#fffdf7] border-t border-b border-[#d1cfc7] py-10 px-4">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 text-center divide-x divide-[#d1cfc7]">
+        {stats.map((item, index) => (
+          <div key={index} className="px-4 py-6">
+            <div className="flex justify-center items-center mb-2">
+              <div className="border border-[#d1cfc7] rounded p-2">
+                {item.icon}
+              </div>
+            </div>
+            <h3 className="text-2xl font-bold text-[#5e3b17]">
+              <CountUp
+                start={0}
+                end={item.displayValue}
+                duration={2}
+                separator=","
+              />
+              {item.suffix}
+            </h3>
+            <p className="text-xs text-[#5e3b17] mt-1 tracking-wide">
+              {item.label}
+            </p>
           </div>
         ))}
       </div>

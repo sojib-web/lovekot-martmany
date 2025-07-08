@@ -19,7 +19,7 @@ const Banner = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[100vh]  overflow-hidden">
+    <div className="relative w-full h-[100vh] overflow-hidden">
       {/* Animated Background */}
       <motion.div
         key={current}
