@@ -113,8 +113,17 @@ const TeamGrid = () => {
   ];
 
   return (
-    <div className="min-h-screen p-6 max-w-7xl mx-auto">
+    <div className="min-h-screen p-6 max-w-7xl mx-auto mt-20">
       <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="sm:col-span-2 md:col-span-3 lg:col-span-4 text-center mb-10">
+          <p className="uppercase tracking-widest text-[18px] text-[#9c774a] font-[cursive] mb-2">
+            Our Professionals
+          </p>
+          <h1 className="text-4xl md:text-5xl font-bold text-[#4c2e05] font-serif">
+            Meet Our Team
+          </h1>
+        </div>
+
         {teamMembers.map((member) => (
           <div
             key={member.id}
