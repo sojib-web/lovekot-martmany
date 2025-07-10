@@ -9,7 +9,7 @@ const About = () => {
       <section className="bg-[#fffdf6] py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-yellow-500 font-semibold uppercase tracking-widest text-sm md:text-base">
-            Your Journey to Love Starts Here
+            {/* Your Journey to Love Starts Here */}
           </p>
           <h2 className="text-3xl md:text-5xl font-bold text-teal-600 mt-4 mb-6 leading-tight">
             About <span className="text-rose-500">LOVEKnot</span>

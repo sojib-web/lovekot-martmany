@@ -5,6 +5,7 @@ import TeamGrid from "./TeamCard/TeamCard";
 import HowItWorks from "./HowItWorks/HowItWorks";
 import SuccessCounter from "./SuccessCounter/SuccessCounter";
 import CtaSection from "./CtaSection/CtaSection";
+import SuccessStories from "./fetchSuccessStories/SuccessStories";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <TeamGrid />
       <HowItWorks />
       <SuccessCounter />
+      <SuccessStories />
     </div>
   );
 };
