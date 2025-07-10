@@ -6,6 +6,7 @@ import SignupSection from "../Components/SignupSection/SignupSection";
 import Login from "../Components/Login/Login";
 import ContactSection from "../Components/ContactSection/ContactSection";
 import About from "../Components/About/About";
+import BiodataPage from "../Components/BiodataPage/BiodataPage";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
       {
         path: "about",
         Component: About,
+      },
+      {
+        path: "biodatas",
+        Component: BiodataPage,
       },
     ],
   },
