@@ -9,8 +9,6 @@ import {
   HiScale,
   HiPhone,
   HiMail,
-  HiOfficeBuilding,
-  HiShieldCheck,
   HiUserGroup,
 } from "react-icons/hi";
 
@@ -54,12 +52,21 @@ const ViewBiodata = () => {
     }
   };
 
-  if (isLoading)
+  if (isLoading) {
     return (
       <p className="text-center py-10 text-gray-500 text-lg animate-pulse">
         Loading your biodata...
       </p>
     );
+  }
+
+  if (!biodata || Object.keys(biodata).length === 0) {
+    return (
+      <p className="text-center py-10 text-red-500 text-lg font-semibold">
+        Biodata not found! Please create your biodata first.
+      </p>
+    );
+  }
 
   return (
     <section className="max-w-5xl mx-auto bg-gradient-to-r from-pink-50 to-yellow-50 p-8 rounded-xl shadow-xl mt-12">

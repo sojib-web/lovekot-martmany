@@ -13,6 +13,7 @@ import CheckoutPage from "../Components/CheckoutPage/CheckoutPage";
 import DashboardLayout from "../layout/DashboardLayout/DashboardLayout";
 import EditBiodataPage from "../layout/DashboardLayout/EditBiodataPage";
 import ViewBiodata from "../layout/DashboardLayout/ViewBiodata/ViewBiodata";
+import MyContactRequest from "../layout/DashboardLayout/MyContactRequest/MyContactRequest";
 // import ViewBiodata from "../layout/DashboardLayout/ViewBiodata";  // TODO: Create these pages later
 // import MyContactRequests from "../layout/DashboardLayout/MyContactRequests";
 // import Favourites from "../layout/DashboardLayout/Favourites";
@@ -84,10 +85,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "my-contact-requests",
-        element: (
-          // <MyContactRequests /> এখনো তৈরি হয়নি, পরে যুক্ত করো
-          <div>My Contact Requests Page Coming Soon</div>
-        ),
+        element: <MyContactRequest />,
       },
       {
         path: "favourites-biodata",
