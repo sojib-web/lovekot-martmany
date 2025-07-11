@@ -5,20 +5,21 @@ import { Link, NavLink, useNavigate } from "react-router";
 import loginBg from "../../assets/banner/login-bg.png";
 import loginCouple from "../../assets/banner/login-couple.png";
 import { AuthContext } from "../../context/AuthContext";
+import useAxios from "../../hooks/useAxios";
 
 const SignupSection = () => {
-  const { createUser, googleLogin } = useContext(AuthContext);
+  const { createUser, googleLogin, updateUserProfile, setUser } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const [error, setError] = useState("");
-
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
   } = useForm();
+  const axiosInstance = useAxios();
 
-  // Firebase error message handler
   const getFirebaseErrorMessage = (code) => {
     switch (code) {
       case "auth/email-already-in-use":
@@ -38,18 +39,39 @@ const SignupSection = () => {
 
   const onSubmit = async (data) => {
     setError("");
+    console.log("🚀 Submitted Signup Data:", data);
     try {
       const res = await createUser(data.email, data.password);
+      console.log("✅ Firebase User Created:", res.user);
+
       if (res.user) {
-        await res.user.updateProfile({
+        await updateUserProfile(res.user, {
           displayName: data.name,
           photoURL: data.photoURL || null,
         });
+
+        const userPayload = {
+          email: data.email,
+          name: data.name,
+          role: "normal",
+          photoURL: data.photoURL || "",
+          createdAt: new Date().toISOString(),
+        };
+
+        console.log("📦 Sending user to MongoDB:", userPayload);
+
+        // Insert user in your backend DB
+        await axiosInstance.post("/users", userPayload);
+
+        // Manually set user with role so your app has it immediately
+        setUser({ ...res.user, role: "normal" });
       }
+
       reset();
       navigate("/");
     } catch (err) {
-      setError(getFirebaseErrorMessage(err.code));
+      console.error("❌ Signup Error:", err);
+      setError(getFirebaseErrorMessage(err.code) || err.message);
     }
   };
 
@@ -57,9 +79,26 @@ const SignupSection = () => {
     setError("");
     try {
       const result = await googleLogin();
-      console.log("Google login success:", result.user);
+      const googleUser = result.user;
+      console.log("✅ Google Login User:", googleUser);
+
+      const userPayload = {
+        email: googleUser.email,
+        name: googleUser.displayName,
+        role: "normal",
+        photoURL: googleUser.photoURL || "",
+        createdAt: new Date().toISOString(),
+      };
+
+      console.log("📦 Sending Google user to MongoDB:", userPayload);
+
+      await axiosInstance.post("/users", userPayload);
+
+      setUser({ ...googleUser, role: "normal" }); // Set user with role
+
       navigate("/");
     } catch (err) {
+      console.error("❌ Google Sign-in Error:", err);
       setError(getFirebaseErrorMessage(err.code));
     }
   };
@@ -82,7 +121,7 @@ const SignupSection = () => {
           />
         </div>
 
-        {/* Right Side (Form) */}
+        {/* Right Side */}
         <div className="p-10 md:p-16 flex flex-col justify-center">
           <p className="text-xs font-medium text-gray-500 uppercase">
             Start for free

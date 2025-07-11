@@ -24,7 +24,7 @@ const BiodataPage = () => {
   const { data: profiles = [], isLoading } = useQuery({
     queryKey: ["biodatas"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/profiles"); // তোমার API রুট
+      const res = await axiosSecure.get("/profiles");
       console.log("Fetched profiles from API:", res.data);
       return res.data;
     },
@@ -55,7 +55,7 @@ const BiodataPage = () => {
     <div className="bg-[#fdf9f0] min-h-screen py-10 px-4 md:px-12">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {/* Filter Section */}
-        <div className="bg-gradient-to-tr from-yellow-100 via-yellow-50 to-yellow-100 rounded-2xl shadow-lg p-6 border-2 border-yellow-300">
+        <div className="rounded-2xl shadow-lg p-6  border-yellow-300">
           <h2 className="text-2xl font-extrabold mb-6 text-yellow-700">
             I'm looking for
           </h2>
