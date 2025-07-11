@@ -15,7 +15,7 @@ const TeamGrid = () => {
     queryKey: ["teamMembers", sortOrder],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/premium-profiles?order=${sortOrder}&limit=6`
+        `/premium-profiles?order=${sortOrder}&limit=8`
       );
       return res.data;
     },

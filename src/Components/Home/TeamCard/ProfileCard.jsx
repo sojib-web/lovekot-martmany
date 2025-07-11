@@ -8,6 +8,12 @@ import {
 import { Link } from "react-router";
 
 const ProfileCard = ({ member, fullView = false }) => {
+  // Fallback image URL (you can replace with your own placeholder)
+  const imgSrc =
+    member.profileImage && member.profileImage.trim() !== ""
+      ? member.profileImage
+      : "/default-profile.png"; // fallback image in your public folder
+
   return (
     <div
       className={`group relative overflow-hidden rounded-xl shadow bg-white transition-all duration-300 ${
@@ -15,8 +21,8 @@ const ProfileCard = ({ member, fullView = false }) => {
       }`}
     >
       <img
-        src={member.profileImage}
-        alt={`Biodata ${member.id}`}
+        src={imgSrc}
+        alt={`Biodata ${member.id || member._id || "profile"}`}
         className={`w-full object-cover ${
           fullView ? "h-96" : "h-72"
         } transform group-hover:scale-105 transition duration-300`}
@@ -79,7 +85,7 @@ const ProfileCard = ({ member, fullView = false }) => {
                 )}
               </div>
 
-              <Link to={`/biodata/${member.id}`}>
+              <Link to={`/biodata/${member.id || member._id}`}>
                 <button className="mt-4 px-4 py-2 bg-white text-black text-sm font-medium rounded hover:bg-gray-200 transition">
                   View Profile
                 </button>
