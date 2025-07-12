@@ -139,6 +139,48 @@ const DashboardLayout = () => {
               </NavLink>
             </li>
 
+            <li>
+              <NavLink
+                to="/dashboard/admin-users"
+                className={({ isActive }) =>
+                  `px-4 py-2 rounded-lg flex items-center gap-3 transition ${getActiveClass(
+                    { isActive }
+                  )}`
+                }
+              >
+                <FaHeart />
+                Manage Users
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                to="/dashboard/approved-premium"
+                className={({ isActive }) =>
+                  `px-4 py-2 rounded-lg flex items-center gap-3 transition ${getActiveClass(
+                    { isActive }
+                  )}`
+                }
+              >
+                <FaHeart />
+                Approved Premium
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                to="/dashboard/approved-contact-request"
+                className={({ isActive }) =>
+                  `px-4 py-2 rounded-lg flex items-center gap-3 transition ${getActiveClass(
+                    { isActive }
+                  )}`
+                }
+              >
+                <FaHeart />
+                Approved Contact Request
+              </NavLink>
+            </li>
+
             <li className="mt-auto">
               <button
                 onClick={handleLogout}

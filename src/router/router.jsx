@@ -16,6 +16,9 @@ import ViewBiodata from "../layout/DashboardLayout/ViewBiodata/ViewBiodata";
 import MyContactRequest from "../layout/DashboardLayout/MyContactRequest/MyContactRequest";
 import MyFavorites from "../layout/DashboardLayout/MyFavourites/MyFavorites";
 import AdminOverview from "../layout/DashboardLayout/AdminOverview/AdminOverview";
+import ManageUsers from "../layout/DashboardLayout/ManageUsers/ManageUsers";
+import ApprovedPremium from "../layout/DashboardLayout/ApprovedPremium/ApprovedPremium";
+import ApprovedContactRequest from "../layout/DashboardLayout/ApprovedContactRequest/ApprovedContactRequest";
 // import ViewBiodata from "../layout/DashboardLayout/ViewBiodata";  // TODO: Create these pages later
 // import MyContactRequests from "../layout/DashboardLayout/MyContactRequests";
 // import Favourites from "../layout/DashboardLayout/Favourites";
@@ -100,6 +103,18 @@ export const router = createBrowserRouter([
       {
         path: "admin-dashboard",
         element: <AdminOverview />,
+      },
+      {
+        path: "admin-users",
+        element: <ManageUsers />,
+      },
+      {
+        path: "approved-premium",
+        element: <ApprovedPremium />,
+      },
+      {
+        path: "approved-contact-request",
+        element: <ApprovedContactRequest />,
       },
     ],
   },
