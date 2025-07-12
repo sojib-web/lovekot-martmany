@@ -53,11 +53,16 @@ const BiodataDetails = () => {
       });
     }
 
+    const favouriteData = {
+      biodataUniqueId: biodata.biodataId,
+      name: biodata.name || "N/A",
+      permanentAddress: biodata.permanentDivision || "N/A",
+      occupation: biodata.occupation || "N/A",
+      userEmail: user?.email,
+    };
+
     try {
-      await axiosSecure.post("/favourites", {
-        biodataId: biodata._id,
-        userEmail: user?.email,
-      });
+      await axiosSecure.post("/favourites", favouriteData);
 
       Swal.fire({
         icon: "success",

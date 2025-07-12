@@ -11,6 +11,7 @@ import {
   HiMail,
   HiUserGroup,
 } from "react-icons/hi";
+import Loader from "../../../Components/shared/Loader";
 
 const ViewBiodata = () => {
   const { user } = useAuth();
@@ -53,11 +54,7 @@ const ViewBiodata = () => {
   };
 
   if (isLoading) {
-    return (
-      <p className="text-center py-10 text-gray-500 text-lg animate-pulse">
-        Loading your biodata...
-      </p>
-    );
+    return <Loader />;
   }
 
   if (!biodata || Object.keys(biodata).length === 0) {

@@ -14,6 +14,8 @@ import DashboardLayout from "../layout/DashboardLayout/DashboardLayout";
 import EditBiodataPage from "../layout/DashboardLayout/EditBiodataPage";
 import ViewBiodata from "../layout/DashboardLayout/ViewBiodata/ViewBiodata";
 import MyContactRequest from "../layout/DashboardLayout/MyContactRequest/MyContactRequest";
+import MyFavorites from "../layout/DashboardLayout/MyFavourites/MyFavorites";
+import AdminOverview from "../layout/DashboardLayout/AdminOverview/AdminOverview";
 // import ViewBiodata from "../layout/DashboardLayout/ViewBiodata";  // TODO: Create these pages later
 // import MyContactRequests from "../layout/DashboardLayout/MyContactRequests";
 // import Favourites from "../layout/DashboardLayout/Favourites";
@@ -89,14 +91,15 @@ export const router = createBrowserRouter([
       },
       {
         path: "favourites-biodata",
-        element: (
-          // <Favourites /> এখনো তৈরি হয়নি, পরে যুক্ত করো
-          <div>Favourites Biodata Page Coming Soon</div>
-        ),
+        element: <MyFavorites />,
       },
       {
-        index: true,
-        element: <EditBiodataPage />, // Dashboard ডিফল্ট পেজ
+        index: "edit-biodata",
+        element: <EditBiodataPage />,
+      },
+      {
+        path: "admin-dashboard",
+        element: <AdminOverview />,
       },
     ],
   },

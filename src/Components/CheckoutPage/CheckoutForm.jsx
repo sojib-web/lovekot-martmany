@@ -1,5 +1,4 @@
 // @ts-nocheck
-/* eslint-disable no-unused-vars */
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import useAxios from "../../hooks/useAxios";
@@ -20,7 +19,7 @@ const CheckoutForm = ({ biodataId, userEmail }) => {
     try {
       const { data: clientSecretData } = await axiosSecure.post(
         "/create-payment-intent",
-        { amount: 5 } // amount in dollars
+        { amount: 5 } // USD
       );
 
       const clientSecret = clientSecretData.clientSecret;
@@ -39,11 +38,12 @@ const CheckoutForm = ({ biodataId, userEmail }) => {
       }
 
       if (result.paymentIntent.status === "succeeded") {
-        // Send contact request
+        // ✅ Include amountPaid
         const res = await axiosSecure.post("/contact-requests", {
           userEmail,
-          biodataId, // string
+          biodataId,
           transactionId: result.paymentIntent.id,
+          amountPaid: 5, // USD
         });
 
         if (res.data.insertedId || res.data.acknowledged) {

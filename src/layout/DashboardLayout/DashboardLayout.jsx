@@ -1,7 +1,15 @@
 // @ts-nocheck
 import React from "react";
-import { Link, Outlet, useNavigate } from "react-router";
+import { NavLink, Outlet, useNavigate } from "react-router";
 import logo from "../../assets/logo.avif";
+import {
+  FaUserEdit,
+  FaRegEye,
+  FaEnvelopeOpenText,
+  FaHeart,
+  FaSignOutAlt,
+} from "react-icons/fa";
+
 const DashboardLayout = () => {
   const navigate = useNavigate();
 
@@ -10,12 +18,17 @@ const DashboardLayout = () => {
     navigate("/login");
   };
 
+  const getActiveClass = ({ isActive }) =>
+    isActive
+      ? "bg-gradient-to-r from-rose-600 to-amber-500 text-white font-semibold shadow-md"
+      : "hover:bg-rose-50 text-gray-700";
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 
-      {/* Main content */}
-      <div className="drawer-content flex flex-col">
+      {/* Main Content */}
+      <div className="drawer-content flex flex-col min-h-screen">
         {/* Mobile navbar */}
         <div className="navbar bg-base-300 lg:hidden w-full">
           <div className="flex-none">
@@ -39,8 +52,8 @@ const DashboardLayout = () => {
           <div className="flex-1 px-2 text-xl font-semibold">Dashboard</div>
         </div>
 
-        {/* Page content */}
-        <div className="p-6">
+        {/* Page Content */}
+        <div className="p-6 bg-gradient-to-b from-rose-50 to-amber-50 border-r border-gray-200 flex-grow overflow-auto">
           <Outlet />
         </div>
       </div>
@@ -48,52 +61,90 @@ const DashboardLayout = () => {
       {/* Sidebar */}
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <div className="flex flex-col w-80 h-full bg-base-200">
-          <div className="p-4 border-b border-base-300 font-bold text-lg">
+        <div className="flex flex-col w-80 h-full bg-gradient-to-b from-rose-50 to-amber-50 border-r border-gray-200">
+          <div className="p-4 border-b border-rose-200 font-bold text-lg">
             <div className="flex items-center gap-2">
-              <img src={logo} alt="logo" className="w-12 h-12" />
-              <Link to="/" className="text-2xl font-bold text-rose-600">
+              <img src={logo} alt="logo" className="w-12 h-12 rounded-lg" />
+              <NavLink to="/" className="text-2xl font-bold text-rose-600">
                 LoveKnot
-              </Link>
+              </NavLink>
             </div>
           </div>
 
-          <ul className="menu flex-1 overflow-y-auto p-4 text-base-content space-y-1">
+          <ul className="menu flex-1 overflow-y-auto p-4 space-y-2">
             <li>
-              <Link
+              <NavLink
                 to="/dashboard/edit-biodata"
-                className="btn btn-ghost justify-start text-left"
+                className={({ isActive }) =>
+                  `px-4 py-2 rounded-lg flex items-center gap-3 transition ${getActiveClass(
+                    { isActive }
+                  )}`
+                }
               >
+                <FaUserEdit />
                 Edit Biodata
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 to="/dashboard/view-biodata"
-                className="btn btn-ghost justify-start text-left"
+                className={({ isActive }) =>
+                  `px-4 py-2 rounded-lg flex items-center gap-3 transition ${getActiveClass(
+                    { isActive }
+                  )}`
+                }
               >
+                <FaRegEye />
                 View Biodata
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 to="/dashboard/my-contact-requests"
-                className="btn btn-ghost justify-start text-left"
+                className={({ isActive }) =>
+                  `px-4 py-2 rounded-lg flex items-center gap-3 transition ${getActiveClass(
+                    { isActive }
+                  )}`
+                }
               >
+                <FaEnvelopeOpenText />
                 My Contact Request
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 to="/dashboard/favourites-biodata"
-                className="btn btn-ghost justify-start text-left"
+                className={({ isActive }) =>
+                  `px-4 py-2 rounded-lg flex items-center gap-3 transition ${getActiveClass(
+                    { isActive }
+                  )}`
+                }
               >
+                <FaHeart />
                 Favourites Biodata
-              </Link>
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                to="/dashboard/admin-dashboard"
+                className={({ isActive }) =>
+                  `px-4 py-2 rounded-lg flex items-center gap-3 transition ${getActiveClass(
+                    { isActive }
+                  )}`
+                }
+              >
+                <FaHeart />
+                Admin Dashboard
+              </NavLink>
             </li>
 
             <li className="mt-auto">
-              <button onClick={handleLogout} className="btn btn-error w-full">
+              <button
+                onClick={handleLogout}
+                className="w-full flex items-center gap-3 justify-center bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold transition"
+              >
+                <FaSignOutAlt />
                 Logout
               </button>
             </li>
