@@ -19,6 +19,8 @@ import AdminOverview from "../layout/DashboardLayout/AdminOverview/AdminOverview
 import ManageUsers from "../layout/DashboardLayout/ManageUsers/ManageUsers";
 import ApprovedPremium from "../layout/DashboardLayout/ApprovedPremium/ApprovedPremium";
 import ApprovedContactRequest from "../layout/DashboardLayout/ApprovedContactRequest/ApprovedContactRequest";
+import AdminRoute from "../routes/AdminRoute";
+import Forbidden from "../Components/shared/Forbidden/Forbidden";
 // import ViewBiodata from "../layout/DashboardLayout/ViewBiodata";  // TODO: Create these pages later
 // import MyContactRequests from "../layout/DashboardLayout/MyContactRequests";
 // import Favourites from "../layout/DashboardLayout/Favourites";
@@ -35,6 +37,10 @@ export const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignupSection />,
+      },
+      {
+        path: "forbidden",
+        element: <Forbidden />,
       },
       {
         path: "login",
@@ -102,19 +108,36 @@ export const router = createBrowserRouter([
       },
       {
         path: "admin-dashboard",
-        element: <AdminOverview />,
+        element: (
+          <AdminRoute>
+            <AdminOverview />
+          </AdminRoute>
+        ),
       },
+
       {
         path: "admin-users",
-        element: <ManageUsers />,
+        element: (
+          <AdminRoute>
+            <ManageUsers />
+          </AdminRoute>
+        ),
       },
       {
         path: "approved-premium",
-        element: <ApprovedPremium />,
+        element: (
+          <AdminRoute>
+            <ApprovedPremium />
+          </AdminRoute>
+        ),
       },
       {
         path: "approved-contact-request",
-        element: <ApprovedContactRequest />,
+        element: (
+          <AdminRoute>
+            <ApprovedContactRequest />
+          </AdminRoute>
+        ),
       },
     ],
   },

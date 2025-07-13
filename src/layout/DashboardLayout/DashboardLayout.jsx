@@ -8,10 +8,24 @@ import {
   FaEnvelopeOpenText,
   FaHeart,
   FaSignOutAlt,
+  FaUsers,
+  FaStar,
+  FaCheckCircle,
+  FaTachometerAlt,
 } from "react-icons/fa";
+import { useAuth } from "../../hooks/useAuth";
+import useUserRole from "../../hooks/useUserRole";
 
 const DashboardLayout = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const { role, isLoading } = useUserRole(user?.email);
+
+  // ✅ Console logs for debugging
+  console.log("✅ Logged in user:", user);
+  console.log("✅ User email:", user?.email);
+  console.log("✅ Role loading status:", isLoading);
+  console.log("✅ User role from DB:", role);
 
   const handleLogout = () => {
     alert("Logging out...");
@@ -23,13 +37,18 @@ const DashboardLayout = () => {
       ? "bg-gradient-to-r from-rose-600 to-amber-500 text-white font-semibold shadow-md"
       : "hover:bg-rose-50 text-gray-700";
 
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        Loading...
+      </div>
+    );
+  }
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-
-      {/* Main Content */}
       <div className="drawer-content flex flex-col min-h-screen">
-        {/* Mobile navbar */}
         <div className="navbar bg-base-300 lg:hidden w-full">
           <div className="flex-none">
             <label htmlFor="my-drawer-2" className="btn btn-square btn-ghost">
@@ -52,7 +71,6 @@ const DashboardLayout = () => {
           <div className="flex-1 px-2 text-xl font-semibold">Dashboard</div>
         </div>
 
-        {/* Page Content */}
         <div className="p-6 bg-gradient-to-b from-rose-50 to-amber-50 border-r border-gray-200 flex-grow overflow-auto">
           <Outlet />
         </div>
@@ -72,122 +90,89 @@ const DashboardLayout = () => {
           </div>
 
           <ul className="menu flex-1 overflow-y-auto p-4 space-y-2">
-            <li>
-              <NavLink
-                to="/dashboard/edit-biodata"
-                className={({ isActive }) =>
-                  `px-4 py-2 rounded-lg flex items-center gap-3 transition ${getActiveClass(
-                    { isActive }
-                  )}`
-                }
-              >
-                <FaUserEdit />
-                Edit Biodata
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard/view-biodata"
-                className={({ isActive }) =>
-                  `px-4 py-2 rounded-lg flex items-center gap-3 transition ${getActiveClass(
-                    { isActive }
-                  )}`
-                }
-              >
-                <FaRegEye />
-                View Biodata
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard/my-contact-requests"
-                className={({ isActive }) =>
-                  `px-4 py-2 rounded-lg flex items-center gap-3 transition ${getActiveClass(
-                    { isActive }
-                  )}`
-                }
-              >
-                <FaEnvelopeOpenText />
-                My Contact Request
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard/favourites-biodata"
-                className={({ isActive }) =>
-                  `px-4 py-2 rounded-lg flex items-center gap-3 transition ${getActiveClass(
-                    { isActive }
-                  )}`
-                }
-              >
-                <FaHeart />
-                Favourites Biodata
-              </NavLink>
-            </li>
+            {/* ----------- Normal User Menu ----------- */}
+            {role === "normal" && (
+              <>
+                <li>
+                  <NavLink
+                    to="/dashboard/edit-biodata"
+                    className={getActiveClass}
+                  >
+                    <FaUserEdit /> Edit Biodata
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/view-biodata"
+                    className={getActiveClass}
+                  >
+                    <FaRegEye /> View Biodata
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/my-contact-requests"
+                    className={getActiveClass}
+                  >
+                    <FaEnvelopeOpenText /> My Contact Request
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/favourites-biodata"
+                    className={getActiveClass}
+                  >
+                    <FaHeart /> Favourites Biodata
+                  </NavLink>
+                </li>
+              </>
+            )}
 
-            <li>
-              <NavLink
-                to="/dashboard/admin-dashboard"
-                className={({ isActive }) =>
-                  `px-4 py-2 rounded-lg flex items-center gap-3 transition ${getActiveClass(
-                    { isActive }
-                  )}`
-                }
-              >
-                <FaHeart />
-                Admin Dashboard
-              </NavLink>
-            </li>
+            {/* ----------- Admin Menu ----------- */}
+            {role === "admin" && (
+              <>
+                <li>
+                  <NavLink
+                    to="/dashboard/admin-dashboard"
+                    className={getActiveClass}
+                  >
+                    <FaTachometerAlt /> Admin Dashboard
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/admin-users"
+                    className={getActiveClass}
+                  >
+                    <FaUsers /> Manage Users
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/approved-premium"
+                    className={getActiveClass}
+                  >
+                    <FaStar /> Approved Premium
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/approved-contact-request"
+                    className={getActiveClass}
+                  >
+                    <FaCheckCircle /> Approved Contact Request
+                  </NavLink>
+                </li>
+              </>
+            )}
 
-            <li>
-              <NavLink
-                to="/dashboard/admin-users"
-                className={({ isActive }) =>
-                  `px-4 py-2 rounded-lg flex items-center gap-3 transition ${getActiveClass(
-                    { isActive }
-                  )}`
-                }
-              >
-                <FaHeart />
-                Manage Users
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink
-                to="/dashboard/approved-premium"
-                className={({ isActive }) =>
-                  `px-4 py-2 rounded-lg flex items-center gap-3 transition ${getActiveClass(
-                    { isActive }
-                  )}`
-                }
-              >
-                <FaHeart />
-                Approved Premium
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink
-                to="/dashboard/approved-contact-request"
-                className={({ isActive }) =>
-                  `px-4 py-2 rounded-lg flex items-center gap-3 transition ${getActiveClass(
-                    { isActive }
-                  )}`
-                }
-              >
-                <FaHeart />
-                Approved Contact Request
-              </NavLink>
-            </li>
-
+            {/* Logout */}
             <li className="mt-auto">
               <button
                 onClick={handleLogout}
                 className="w-full flex items-center gap-3 justify-center bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold transition"
               >
-                <FaSignOutAlt />
-                Logout
+                <FaSignOutAlt /> Logout
               </button>
             </li>
           </ul>
