@@ -1,7 +1,8 @@
+// src/routes/PrivateRoute.jsx
+import React from "react";
 import { Navigate, useLocation } from "react-router";
-// import { useAuth } from "../hooks/useAxios";
-import Loader from "../Components/shared/Loader";
 import { useAuth } from "../hooks/useAuth";
+import Loader from "../Components/shared/Loader";
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();

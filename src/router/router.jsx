@@ -21,6 +21,7 @@ import ApprovedPremium from "../layout/DashboardLayout/ApprovedPremium/ApprovedP
 import ApprovedContactRequest from "../layout/DashboardLayout/ApprovedContactRequest/ApprovedContactRequest";
 import AdminRoute from "../routes/AdminRoute";
 import Forbidden from "../Components/shared/Forbidden/Forbidden";
+import DashboardRedirect from "../layout/DashboardLayout/DashboardRedirect/DashboardRedirect";
 // import ViewBiodata from "../layout/DashboardLayout/ViewBiodata";  // TODO: Create these pages later
 // import MyContactRequests from "../layout/DashboardLayout/MyContactRequests";
 // import Favourites from "../layout/DashboardLayout/Favourites";
@@ -87,6 +88,10 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
+        index: true,
+        element: <DashboardRedirect />,
+      },
+      {
         path: "edit-biodata",
         element: <EditBiodataPage />,
       },
@@ -103,10 +108,6 @@ export const router = createBrowserRouter([
         element: <MyFavorites />,
       },
       {
-        index: "edit-biodata",
-        element: <EditBiodataPage />,
-      },
-      {
         path: "admin-dashboard",
         element: (
           <AdminRoute>
@@ -114,7 +115,6 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
-
       {
         path: "admin-users",
         element: (

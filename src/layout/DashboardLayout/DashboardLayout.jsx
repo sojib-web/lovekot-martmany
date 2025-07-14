@@ -129,7 +129,7 @@ const DashboardLayout = () => {
             )}
 
             {/* ----------- Admin Menu ----------- */}
-            {role === "admin" && (
+            {role === "premium" && (
               <>
                 <li>
                   <NavLink

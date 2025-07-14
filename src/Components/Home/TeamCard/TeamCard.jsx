@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../../hooks/useAxios";
@@ -7,6 +8,7 @@ const TeamGrid = () => {
   const axiosSecure = useAxios();
   const [sortOrder, setSortOrder] = useState("asc");
 
+  // Fetch premium profiles sorted by age (asc or desc)
   const {
     data: teamMembers = [],
     isLoading,
@@ -19,6 +21,7 @@ const TeamGrid = () => {
       );
       return res.data;
     },
+    keepPreviousData: true,
   });
 
   if (isLoading) return <p className="text-center mt-20">Loading...</p>;
@@ -51,8 +54,8 @@ const TeamGrid = () => {
               onChange={(e) => setSortOrder(e.target.value)}
               className="border border-[#5f4120] rounded-md px-4 py-[6px] text-sm text-[#5f4120] bg-white focus:outline-none focus:ring-2 focus:ring-[#e3c6a0] transition duration-200 ease-in-out shadow-sm"
             >
-              <option value="desc">30 -+ 40</option>
-              <option value="asc">40 -+ 50</option>
+              <option value="asc">40 - 50</option>
+              <option value="desc">30 - 40</option>
             </select>
           </div>
         </div>

@@ -1,18 +1,28 @@
 // hooks/useUserRole.js
 import { useQuery } from "@tanstack/react-query";
-import useAxios from "./useAxios"; // secure axios instance
+import useAxios from "./useAxios"; // your secure axios instance
 
 const useUserRole = (email) => {
   const axiosSecure = useAxios();
 
-  const { data: role, isLoading } = useQuery({
+  console.log("📧 useUserRole called with:", email);
+
+  const { data: role = "user", isLoading } = useQuery({
     queryKey: ["userRole", email],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/users/role/${email}`);
-      return res.data?.role; // should return "user" or "admin"
-    },
     enabled: !!email,
+    queryFn: async () => {
+      try {
+        const res = await axiosSecure.get(`/users/role/${email.toLowerCase()}`);
+        console.log("✅ Fetched role:", res.data);
+        return res.data?.role || "user";
+      } catch (err) {
+        console.error("❌ Error fetching user role:", err);
+        return "user";
+      }
+    },
   });
+
+  console.log("🚦 Final role:", role);
 
   return { role, isLoading };
 };
