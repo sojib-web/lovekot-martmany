@@ -1,24 +1,29 @@
 // @ts-nocheck
+import React, { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import useAxios from "../../../hooks/useAxios";
 import Swal from "sweetalert2";
+import Pagination from "../../../Components/Pagination/Pagination";
 
 const ApprovedPremium = () => {
   const axiosSecure = useAxios();
   const queryClient = useQueryClient();
 
-  // Fetch all premium approval requests
-  const {
-    data: users = [],
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ["approved-premium-requests"],
+  // Pagination state
+  const [page, setPage] = useState(1);
+  const limit = 10; // প্রতি পেজে কত রেকর্ড দেখাবে
+
+  // Fetch all premium approval requests with pagination
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["approved-premium-requests", page],
     queryFn: async () => {
-      const res = await axiosSecure.get("/dashboard/approvedPremium");
+      const res = await axiosSecure.get("/dashboard/approvedPremium", {
+        params: { page, limit },
+      });
       console.log("📦 Approved Premium Fetched Users:", res.data);
-      return res.data;
+      return res.data; // structure: { data: [...users], totalPages, page, total }
     },
+    keepPreviousData: true,
   });
 
   // Mutation to make user premium
@@ -31,7 +36,7 @@ const ApprovedPremium = () => {
       console.log("✅ User made premium successfully");
       Swal.fire("Success", "User is now Premium", "success");
       queryClient.invalidateQueries({
-        queryKey: ["approved-premium-requests"],
+        queryKey: ["approved-premium-requests", page],
       });
     },
     onError: (error) => {
@@ -71,6 +76,10 @@ const ApprovedPremium = () => {
     );
   }
 
+  // data.data হচ্ছে ইউজারদের অ্যারে
+  const users = data?.data || [];
+  const totalPages = data?.totalPages || 1;
+
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">
       <h1 className="text-4xl font-bold mb-10 text-center bg-gradient-to-r from-rose-600 to-yellow-400 text-transparent bg-clip-text">
@@ -82,6 +91,7 @@ const ApprovedPremium = () => {
           <table className="w-full text-sm text-left text-gray-700">
             <thead className="text-sm text-gray-100 bg-gradient-to-r from-rose-600 to-amber-500">
               <tr>
+                <th className="px-6 py-4 font-semibold tracking-wide">#</th>
                 <th className="px-6 py-4 font-semibold tracking-wide">Name</th>
                 <th className="px-6 py-4 font-semibold tracking-wide">Email</th>
                 <th className="px-6 py-4 font-semibold tracking-wide">
@@ -100,6 +110,9 @@ const ApprovedPremium = () => {
                     index % 2 === 0 ? "bg-white" : "bg-gray-50"
                   }`}
                 >
+                  <td className="px-6 py-4 font-medium">
+                    {(page - 1) * limit + index + 1}
+                  </td>
                   <td className="px-6 py-4 font-medium">{user.name}</td>
                   <td className="px-6 py-4">{user.email}</td>
                   <td className="px-6 py-4">{user.biodataId ?? "N/A"}</td>
@@ -109,7 +122,9 @@ const ApprovedPremium = () => {
                       disabled={makePremiumMutation.isLoading}
                       className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-1.5 rounded-full shadow-sm transition disabled:opacity-50"
                     >
-                      Make Premium
+                      {makePremiumMutation.isLoading
+                        ? "Processing..."
+                        : "Make Premium"}
                     </button>
                   </td>
                 </tr>
@@ -122,6 +137,9 @@ const ApprovedPremium = () => {
           No premium approval requests found.
         </p>
       )}
+
+      {/* Pagination Component */}
+      <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
     </div>
   );
 };

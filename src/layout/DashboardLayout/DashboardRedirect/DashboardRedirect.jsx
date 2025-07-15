@@ -15,7 +15,7 @@ const DashboardRedirect = () => {
     }
 
     if (!isLoading) {
-      if (role === "admin") {
+      if (role === "premium") {
         navigate("/dashboard/admin-dashboard");
       } else {
         navigate("/dashboard/edit-biodata");
