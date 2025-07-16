@@ -1,8 +1,7 @@
 # LoveKnot Matrimony Platform
 
 [Live Site](https://your-live-site-url.com)  
-**Admin Email:** admin@loveknot.com  
-**Admin Password:** YourAdminPassword123
+
 
 ---
 
