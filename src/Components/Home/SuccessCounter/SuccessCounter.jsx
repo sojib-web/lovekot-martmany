@@ -12,7 +12,7 @@ const SuccessCounter = () => {
     queryKey: ["success-counter"],
     queryFn: async () => {
       const res = await axiosSecure.get("/api/success-counter");
-      console.log("📦 Fetched counter data:", res.data); // Log fetched API data
+
       return res.data;
     },
   });
@@ -49,8 +49,6 @@ const SuccessCounter = () => {
       label: "WOMEN'S BIODATA",
     },
   ];
-
-  console.log("📊 Mapped stats array:", stats); // Log final stats to be rendered
 
   return (
     <section className="bg-[#fffdf7] border-t border-b border-[#d1cfc7] py-10 px-4">

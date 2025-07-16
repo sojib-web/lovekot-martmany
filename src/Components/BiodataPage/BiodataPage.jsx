@@ -30,7 +30,7 @@ const BiodataPage = () => {
     queryKey: ["biodatas"],
     queryFn: async () => {
       const res = await axiosSecure.get("/profiles");
-      console.log("Fetched profiles from API:", res.data);
+
       return res.data;
     },
   });

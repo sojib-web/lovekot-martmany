@@ -39,10 +39,9 @@ const SignupSection = () => {
 
   const onSubmit = async (data) => {
     setError("");
-    console.log("🚀 Submitted Signup Data:", data);
+
     try {
       const res = await createUser(data.email, data.password);
-      console.log("✅ Firebase User Created:", res.user);
 
       if (res.user) {
         await updateUserProfile(res.user, {
@@ -57,8 +56,6 @@ const SignupSection = () => {
           photoURL: data.photoURL || "",
           createdAt: new Date().toISOString(),
         };
-
-        console.log("📦 Sending user to MongoDB:", userPayload);
 
         // Insert user in your backend DB
         await axiosInstance.post("/users", userPayload);

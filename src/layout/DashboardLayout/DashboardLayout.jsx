@@ -21,12 +21,6 @@ const DashboardLayout = () => {
   const { user } = useAuth();
   const { role, isLoading } = useUserRole(user?.email);
 
-  // ✅ Console logs for debugging
-  console.log("✅ Logged in user:", user);
-  console.log("✅ User email:", user?.email);
-  console.log("✅ Role loading status:", isLoading);
-  console.log("✅ User role from DB:", role);
-
   const handleLogout = () => {
     alert("Logging out...");
     navigate("/login");

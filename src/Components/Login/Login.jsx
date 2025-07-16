@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // @ts-nocheck
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -37,7 +38,7 @@ const Login = () => {
     setError("");
     try {
       const result = await login(data.email, data.password);
-      console.log("Login Success:", result.user);
+
       navigate("/");
     } catch (err) {
       console.error("Login Error:", err.code);

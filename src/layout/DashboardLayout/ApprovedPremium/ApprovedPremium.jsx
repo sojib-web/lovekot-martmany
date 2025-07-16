@@ -20,8 +20,8 @@ const ApprovedPremium = () => {
       const res = await axiosSecure.get("/dashboard/approvedPremium", {
         params: { page, limit },
       });
-      console.log("📦 Approved Premium Fetched Users:", res.data);
-      return res.data; // structure: { data: [...users], totalPages, page, total }
+
+      return res.data;
     },
     keepPreviousData: true,
   });
