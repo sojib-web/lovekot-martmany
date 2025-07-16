@@ -34,28 +34,28 @@ const Footer = () => {
           <h3 className="font-semibold mb-4">HELP & SUPPORT</h3>
           <ul className="space-y-2">
             <li>
-              <a href="#" className="hover:text-blue-500">
-                About company
+              <a href="/" className="hover:text-blue-500">
+                Home
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-blue-500">
-                Feedback
+              <a href="/biodatas" className="hover:text-blue-500">
+                Biodata
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-blue-500">
-                Testimonials
+              <a href="/about" className="hover:text-blue-500">
+                About Us
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-blue-500">
-                Contact us
+              <a href="/contact" className="hover:text-blue-500">
+                Contact Us
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-blue-500">
-                FAQs
+              <a href="/dashboard" className="hover:text-blue-500">
+                dashboard
               </a>
             </li>
           </ul>
@@ -99,7 +99,7 @@ const Footer = () => {
       <div className="text-center py-2 text-xs text-gray-500">
         Copyright © 2023{" "}
         <a href="#" className="text-blue-500 hover:underline">
-          Company.com
+          LoveKnot Team
         </a>{" "}
         All rights reserved.
       </div>

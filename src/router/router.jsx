@@ -22,6 +22,7 @@ import ApprovedContactRequest from "../layout/DashboardLayout/ApprovedContactReq
 import AdminRoute from "../routes/AdminRoute";
 import Forbidden from "../Components/shared/Forbidden/Forbidden";
 import DashboardRedirect from "../layout/DashboardLayout/DashboardRedirect/DashboardRedirect";
+import GotMarriedForm from "../layout/DashboardLayout/GotMarriedForm/GotMarriedForm";
 // import ViewBiodata from "../layout/DashboardLayout/ViewBiodata";  // TODO: Create these pages later
 // import MyContactRequests from "../layout/DashboardLayout/MyContactRequests";
 // import Favourites from "../layout/DashboardLayout/Favourites";
@@ -90,6 +91,11 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <DashboardRedirect />,
+      },
+
+      {
+        path: "married",
+        element: <GotMarriedForm />,
       },
       {
         path: "edit-biodata",

@@ -94,6 +94,11 @@ const DashboardLayout = () => {
             {role === "normal" && (
               <>
                 <li>
+                  <NavLink to="/dashboard/married" className={getActiveClass}>
+                    <FaUserEdit /> Got Married Form
+                  </NavLink>
+                </li>
+                <li>
                   <NavLink
                     to="/dashboard/edit-biodata"
                     className={getActiveClass}

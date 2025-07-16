@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
 import ProfileCard from "../../Components/Home/TeamCard/ProfileCard";
+import Pagination from "../Pagination/Pagination";
 
 const divisions = [
   "All",
@@ -21,6 +22,10 @@ const BiodataPage = () => {
   const [selectedAge, setSelectedAge] = useState("All");
   const [selectedDivision, setSelectedDivision] = useState("All");
 
+  // Pagination state
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 8;
+
   const { data: profiles = [], isLoading } = useQuery({
     queryKey: ["biodatas"],
     queryFn: async () => {
@@ -30,24 +35,35 @@ const BiodataPage = () => {
     },
   });
 
-  const filterProfiles = () => {
-    return profiles
-      .filter((profile) =>
-        selectedGender === "All" ? true : profile.type === selectedGender
-      )
-      .filter((profile) => {
-        if (selectedAge === "All") return true;
-        const age = profile.age;
-        if (selectedAge === "18 to 30") return age >= 18 && age <= 30;
-        if (selectedAge === "30 to 40") return age > 30 && age <= 40;
-        return true;
-      })
-      .filter((profile) =>
-        selectedDivision === "All"
-          ? true
-          : profile.division === selectedDivision
-      );
-  };
+  // Filtered profiles based on filter selections
+  const filteredProfiles = profiles
+    .filter((profile) =>
+      selectedGender === "All" ? true : profile.type === selectedGender
+    )
+    .filter((profile) => {
+      if (selectedAge === "All") return true;
+      const age = profile.age;
+      if (selectedAge === "18 to 30") return age >= 18 && age <= 30;
+      if (selectedAge === "30 to 40") return age > 30 && age <= 40;
+      return true;
+    })
+    .filter((profile) =>
+      selectedDivision === "All" ? true : profile.division === selectedDivision
+    );
+
+  // Calculate total pages based on filtered data length
+  const totalPages = Math.ceil(filteredProfiles.length / itemsPerPage);
+
+  // Get profiles to show on current page
+  const paginatedProfiles = filteredProfiles.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
+
+  // If filters or profiles change, reset to page 1
+  React.useEffect(() => {
+    setPage(1);
+  }, [selectedGender, selectedAge, selectedDivision, profiles]);
 
   if (isLoading) return <p className="text-center mt-10">Loading...</p>;
 
@@ -55,7 +71,7 @@ const BiodataPage = () => {
     <div className="bg-[#fdf9f0] min-h-screen py-10 px-4 md:px-12">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {/* Filter Section */}
-        <div className="rounded-2xl shadow-lg p-6  border-yellow-300">
+        <div className="rounded-2xl shadow-lg p-6 border-yellow-300">
           <h2 className="text-2xl font-extrabold mb-6 text-yellow-700">
             I'm looking for
           </h2>
@@ -116,21 +132,35 @@ const BiodataPage = () => {
           <h3 className="text-xl font-semibold mb-6">
             Showing{" "}
             <span className="text-purple-600 font-bold">
-              {filterProfiles().length}
+              {filteredProfiles.length}
             </span>{" "}
             profiles
           </h3>
 
-          {filterProfiles().length === 0 ? (
+          {filteredProfiles.length === 0 ? (
             <p className="text-center text-gray-500 text-lg mt-20">
               Sorry, no profiles matched your search criteria.
             </p>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {filterProfiles().map((profile) => (
-                <ProfileCard key={profile._id || profile.id} member={profile} />
-              ))}
-            </div>
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {paginatedProfiles.map((profile) => (
+                  <ProfileCard
+                    key={profile._id || profile.id}
+                    member={profile}
+                  />
+                ))}
+              </div>
+
+              {/* Pagination Component */}
+              <div className="mt-8">
+                <Pagination
+                  page={page}
+                  totalPages={totalPages}
+                  onPageChange={setPage}
+                />
+              </div>
+            </>
           )}
         </div>
       </div>
