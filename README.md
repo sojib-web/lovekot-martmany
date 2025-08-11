@@ -1,6 +1,6 @@
 # LoveKnot Matrimony Platform
 
-[Live Site](https://your-live-site-url.com)  
+[Live Site](https://loveknot-f6d02.web.app/)  
 
 
 ---
