@@ -1,7 +1,10 @@
 # LoveKnot Matrimony Platform
 
-[Live Site](https://loveknot-f6d02.web.app/)  
+<p align="center">
+  <img src="https://i.ibb.co/4gpKzjyW/loveknot-f6d02-web-app.png" alt="LoveKnot Screenshot" width="80%" />
+</p>
 
+[Live Site](https://loveknot-f6d02.web.app/)  
 
 ---
 
@@ -13,35 +16,43 @@ LoveKnot is a modern Matrimony platform built using the MERN stack (MongoDB, Exp
 
 ## Features
 
-- **Responsive Design:** Perfectly responsive for mobile, tablet, and desktop devices.
-- **Advanced Search & Filters:** Search profiles by gender, age range, division, and more.
-- **Secure Authentication:** Secure login system using Firebase Authentication.
-- **Persistent Login:** Users remain logged in even after page reloads on private routes.
-- **Role-Based Access:** Separate Admin and User dashboards.
-- **Profile Management:** Create, update, and delete user profiles.
-- **Premium Profiles:** Admin-approved premium profiles for better visibility.
-- **Contact Requests & Payments:** Request contact info and complete payments securely.
-- **Success Stories:** Display real success stories in a beautiful carousel.
-- **Notifications:** SweetAlert2 notifications for all CRUD and authentication operations.
-- **TanStack Query:** All GET requests for data fetching are managed using TanStack Query.
-- **Environment Variables:** Firebase and MongoDB credentials are secured with environment variables.
+- **Responsive Design:** Mobile, tablet, and desktop friendly UI.  
+- **Advanced Search & Filters:** Filter profiles by gender, age, division, etc.  
+- **Secure Authentication:** Firebase Authentication (Email/Password & Google).  
+- **Persistent Login:** Maintains user session across page reloads.  
+- **Role-Based Access Control:** Admin and User dashboards with different privileges.  
+- **Profile Management:** Users can create, update, delete profiles.  
+- **Premium Profiles:** Admin-approved premium profiles get better visibility.  
+- **Contact Requests & Payments:** Secure contact info requests & payments (Stripe/bKash).  
+- **Success Stories Carousel:** Real success stories displayed elegantly.  
+- **Notifications:** SweetAlert2 for feedback on user actions.  
+- **Data Fetching:** TanStack Query handles all GET requests efficiently.  
+- **Environment Variables:** Keeps sensitive data like Firebase and MongoDB keys secure.
 
 ---
 
 ## Tech Stack
 
-- **Frontend:** React, React Router, TanStack Query, Axios, Tailwind CSS, SweetAlert2, Swiper
-- **Backend:** Node.js, Express, MongoDB, Mongoose
-- **Authentication:** Firebase Authentication (Email/Password and Google Sign-In)
-- **Payments:** Stripe or bKash (based on project requirements)
-- **Version Control:** Git (at least 20 client-side commits and 12 server-side commits)
+- **Frontend:** React, React Router, TanStack Query, Axios, Tailwind CSS, SweetAlert2, Swiper  
+- **Backend:** Node.js, Express, MongoDB, Mongoose  
+- **Authentication:** Firebase Authentication  
+- **Payments:** Stripe or bKash  
+- **Version Control:** Git (20+ client-side commits, 12+ server-side commits)
 
 ---
 
 ## Installation & Setup
 
-### Requirements
+### Prerequisites
 
-- Node.js and npm installed
-- MongoDB (Atlas or local)
-- Firebase project
+- Node.js and npm installed  
+- MongoDB Atlas account or local MongoDB  
+- Firebase project setup with Authentication enabled
+
+### Steps
+
+1. **Clone the repositories:**
+
+```bash
+git clone https://github.com/yourusername/loveknot-client.git
+git clone https://github.com/yourusername/loveknot-server.git
