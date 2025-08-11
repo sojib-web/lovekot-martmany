@@ -2,7 +2,7 @@ import axios from "axios";
 import { getAuth } from "firebase/auth";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000", // update if needed
+  baseURL: `https://matrimony-love-knot-server.vercel.app/`, // update if needed
 });
 
 axiosInstance.interceptors.request.use(
