@@ -54,5 +54,5 @@ LoveKnot is a modern Matrimony platform built using the MERN stack (MongoDB, Exp
 1. **Clone the repositories:**
 
 ```bash
-git clone https://github.com/yourusername/loveknot-client.git
-git clone https://github.com/yourusername/loveknot-server.git
+git clone [[https://github.com/yourusername/loveknot-client.git](https://github.com/sojib-web/lovekot-martmany)](https://github.com/sojib-web/lovekot-martmany)
+git clone [https://github.com/yourusername/loveknot-server.git](https://github.com/sojib-web/lovekot-martmany-server)
