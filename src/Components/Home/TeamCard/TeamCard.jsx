@@ -1,24 +1,22 @@
 // @ts-nocheck
-import React, { useState } from "react";
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../../hooks/useAxios";
 import ProfileCard from "./ProfileCard";
+import decorationImg from "../../../assets/banner/1.png";
 
 const TeamGrid = () => {
   const axiosSecure = useAxios();
-  const [sortOrder, setSortOrder] = useState("asc");
 
-  // Fetch premium profiles sorted by age (asc or desc)
+  // Fetch premium profiles (no sorting)
   const {
     data: teamMembers = [],
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["teamMembers", sortOrder],
+    queryKey: ["teamMembers"],
     queryFn: async () => {
-      const res = await axiosSecure.get(
-        `/premium-profiles?order=${sortOrder}&limit=8`
-      );
+      const res = await axiosSecure.get(`/premium-profiles?limit=8`);
       return res.data;
     },
     keepPreviousData: true,
@@ -45,18 +43,14 @@ const TeamGrid = () => {
             to find your perfect match.
           </p>
 
-          <div className="mb-6 text-right">
-            <label className="mr-2 font-medium text-sm text-[#5f4120]">
-              Sort by age:
-            </label>
-            <select
-              value={sortOrder}
-              onChange={(e) => setSortOrder(e.target.value)}
-              className="border border-[#5f4120] rounded-md px-4 py-[6px] text-sm text-[#5f4120] bg-white focus:outline-none focus:ring-2 focus:ring-[#e3c6a0] transition duration-200 ease-in-out shadow-sm"
-            >
-              <option value="asc">40 - 50</option>
-              <option value="desc">30 - 40</option>
-            </select>
+          <div className="flex items-center justify-center mt-6 space-x-4">
+            <span className="h-px w-16 md:w-24 bg-pink-300"></span>
+            <img
+              src={decorationImg}
+              alt="decoration"
+              className="w-32 md:w-40 animate-pulse"
+            />
+            <span className="h-px w-16 md:w-24 bg-pink-300"></span>
           </div>
         </div>
 

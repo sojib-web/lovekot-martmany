@@ -8,7 +8,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-[#e6eef3] relative mt-20">
+    <footer className="bg-[#e6eef3]">
       {/* Top Banner */}
       <div className="bg-[#f9196f] text-white text-center py-4 px-6">
         <p className="text-sm md:text-base">
@@ -18,9 +18,8 @@ const Footer = () => {
           <span className="uppercase font-semibold">info@example.com</span>
         </p>
       </div>
-
       {/* Footer Content */}
-      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10 text-gray-700">
+      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10 text-gray-700 border-b border-gray-300">
         {/* Get In Touch */}
         <div>
           <h3 className="font-semibold mb-4">GET IN TOUCH</h3>
@@ -34,28 +33,28 @@ const Footer = () => {
           <h3 className="font-semibold mb-4">HELP & SUPPORT</h3>
           <ul className="space-y-2">
             <li>
-              <a href="/" className="hover:text-blue-500">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="/biodatas" className="hover:text-blue-500">
-                Biodata
-              </a>
-            </li>
-            <li>
               <a href="/about" className="hover:text-blue-500">
-                About Us
+                About company
+              </a>
+            </li>
+            <li>
+              <a href="/feedback" className="hover:text-blue-500">
+                Feedback
+              </a>
+            </li>
+            <li>
+              <a href="/testimonials" className="hover:text-blue-500">
+                Testimonials
               </a>
             </li>
             <li>
               <a href="/contact" className="hover:text-blue-500">
-                Contact Us
+                Contact us
               </a>
             </li>
             <li>
-              <a href="/dashboard" className="hover:text-blue-500">
-                dashboard
+              <a href="/faqs" className="hover:text-blue-500">
+                FAQs
               </a>
             </li>
           </ul>
@@ -81,25 +80,22 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Divider */}
-      <div className="border-t border-gray-300 w-full"></div>
-
       {/* Bottom Bar */}
-      <div className="text-center py-4 px-6 text-sm text-gray-600 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto">
+      <div className="text-center py-6 px-6 text-sm text-gray-600 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto">
         <p>
           Company name Site - Trusted by over thousands of Boys & Girls for
-          successful marriage.
+          successfull marriage.
         </p>
-        <button className="bg-gray-700 text-white px-4 py-2 mt-3 md:mt-0 rounded">
+        <button className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 mt-3 md:mt-0 rounded">
           Join us today !
         </button>
       </div>
 
       {/* Copyright */}
-      <div className="text-center py-2 text-xs text-gray-500">
+      <div className="text-center py-4 text-xs text-gray-500 border-t border-gray-300">
         Copyright © 2023{" "}
         <a href="#" className="text-blue-500 hover:underline">
-          LoveKnot Team
+          Company.com
         </a>{" "}
         All rights reserved.
       </div>

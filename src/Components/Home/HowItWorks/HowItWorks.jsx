@@ -6,6 +6,8 @@ import img4 from "../../../assets/banner/Work/rings.png";
 import img5 from "../../../assets/banner/Work/wedding-2.png";
 import img6 from "../../../assets/banner/Work/wedding-couple.png";
 
+import decorationImg from "../../../assets/banner/1.png";
+
 const steps = [
   {
     title: "Register",
@@ -53,18 +55,30 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="bg-[#fffdf7] py-16 px-4">
+    <section className="bg-[#fefbf3] py-16 px-4">
       <div className="text-center mb-12">
-        <p className="uppercase text-sm tracking-widest text-gray-600">
+        <p className="uppercase tracking-widest text-[18px] text-[#9c774a] font-[cursive] mb-2">
           Moments
         </p>
-        <h2 className="text-3xl font-semibold text-[#3b2e1d]">How it works</h2>
+        <h2 className="text-4xl md:text-5xl font-semibold text-[#4c2e05] font-serif">
+          How it works
+        </h2>
         <div className="mt-2 w-16 h-1 bg-pink-400 mx-auto rounded-full"></div>
       </div>
 
-      <div className="relative max-w-4xl mx-auto">
+      <div className="flex items-center justify-center mt-6 space-x-4">
+        <span className="h-px w-16 md:w-24 bg-pink-300"></span>
+        <img
+          src={decorationImg}
+          alt="decoration"
+          className="w-32 md:w-40 animate-pulse"
+        />
+        <span className="h-px w-16 md:w-24 bg-pink-300"></span>
+      </div>
+
+      <div className="relative max-w-4xl mx-auto mt-12">
         {/* Vertical line */}
-        <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-300"></div>
+        <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-300 hidden md:block"></div>
 
         <div className="space-y-12">
           {steps.map((step, index) => {
@@ -73,32 +87,32 @@ const HowItWorks = () => {
             return (
               <div
                 key={index}
-                className={`flex flex-col md:flex-row items-center ${
+                className={`flex flex-col md:flex-row items-center gap-8 relative ${
                   isRight ? "md:flex-row" : "md:flex-row-reverse"
-                } gap-8 relative`}
+                }`}
               >
                 {/* Content Box */}
-                <div className="md:w-1/2 px-4 text-right md:text-left">
-                  <h3 className="text-xl font-semibold text-[#3b2e1d]">
+                <div className="md:w-1/2 px-4 text-center md:text-left">
+                  <h3 className="text-xl md:text-2xl font-semibold text-[#3b2e1d]">
                     {step.title}
                   </h3>
-                  <p className="text-xs text-pink-600 font-bold">
+                  <p className="text-xs md:text-sm text-pink-600 font-bold mt-1">
                     TIMING: {step.time}
                   </p>
-                  <p className="text-sm mt-2 text-gray-600">
+                  <p className="text-sm md:text-base mt-2 text-gray-600">
                     {step.description}
                   </p>
                 </div>
 
                 {/* Dot */}
-                <div className="w-4 h-4 bg-[#3b2e1d] rounded-full absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"></div>
+                <div className="w-4 h-4 bg-[#3b2e1d] rounded-full absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 md:static md:translate-x-0 md:translate-y-0"></div>
 
                 {/* Image */}
                 <div className="md:w-1/2 flex justify-center">
                   <img
                     src={step.image}
                     alt={step.title}
-                    className="w-24 h-24 object-contain"
+                    className="w-20 h-20 md:w-24 md:h-24 object-contain"
                   />
                 </div>
               </div>

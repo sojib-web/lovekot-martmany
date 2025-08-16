@@ -1,5 +1,4 @@
 // @ts-nocheck
-// src/components/Navbar.jsx
 import { useState, useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
@@ -25,9 +24,9 @@ const Navbar = () => {
       <NavLink
         to="/"
         className={({ isActive }) =>
-          `hover:text-rose-500 font-semibold ${
-            isActive ? "text-rose-600 underline" : "text-gray-700"
-          }`
+          `relative px-2 py-1 font-semibold transition-all duration-300 hover:text-rose-500 ${
+            isActive ? "text-rose-600 after:scale-x-100" : "text-gray-700"
+          } after:content-[''] after:block after:h-[2px] after:bg-rose-500 after:scale-x-0 after:origin-left after:transition-transform after:duration-300`
         }
       >
         Home
@@ -35,9 +34,9 @@ const Navbar = () => {
       <NavLink
         to="/biodatas"
         className={({ isActive }) =>
-          `hover:text-rose-500 font-semibold ${
-            isActive ? "text-rose-600 underline" : "text-gray-700"
-          }`
+          `relative px-2 py-1 font-semibold transition-all duration-300 hover:text-rose-500 ${
+            isActive ? "text-rose-600 after:scale-x-100" : "text-gray-700"
+          } after:content-[''] after:block after:h-[2px] after:bg-rose-500 after:scale-x-0 after:origin-left after:transition-transform after:duration-300`
         }
       >
         Biodatas
@@ -45,9 +44,9 @@ const Navbar = () => {
       <NavLink
         to="/about"
         className={({ isActive }) =>
-          `hover:text-rose-500 font-semibold ${
-            isActive ? "text-rose-600 underline" : "text-gray-700"
-          }`
+          `relative px-2 py-1 font-semibold transition-all duration-300 hover:text-rose-500 ${
+            isActive ? "text-rose-600 after:scale-x-100" : "text-gray-700"
+          } after:content-[''] after:block after:h-[2px] after:bg-rose-500 after:scale-x-0 after:origin-left after:transition-transform after:duration-300`
         }
       >
         About Us
@@ -55,9 +54,9 @@ const Navbar = () => {
       <NavLink
         to="/contact"
         className={({ isActive }) =>
-          `hover:text-rose-500 font-semibold ${
-            isActive ? "text-rose-600 underline" : "text-gray-700"
-          }`
+          `relative px-2 py-1 font-semibold transition-all duration-300 hover:text-rose-500 ${
+            isActive ? "text-rose-600 after:scale-x-100" : "text-gray-700"
+          } after:content-[''] after:block after:h-[2px] after:bg-rose-500 after:scale-x-0 after:origin-left after:transition-transform after:duration-300`
         }
       >
         Contact Us
@@ -66,9 +65,9 @@ const Navbar = () => {
         <NavLink
           to="/dashboard"
           className={({ isActive }) =>
-            `hover:text-rose-500 font-semibold ${
-              isActive ? "text-rose-600 underline" : "text-gray-700"
-            }`
+            `relative px-2 py-1 font-semibold transition-all duration-300 hover:text-rose-500 ${
+              isActive ? "text-rose-600 after:scale-x-100" : "text-gray-700"
+            } after:content-[''] after:block after:h-[2px] after:bg-rose-500 after:scale-x-0 after:origin-left after:transition-transform after:duration-300`
           }
         >
           Dashboard
@@ -78,27 +77,34 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-[#fefbf3]  sticky top-0 z-50">
+    <nav className="sticky top-0 z-50 backdrop-blur-md bg-white/60 shadow-md transition-all duration-500">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-        {/* Left: Logo */}
+        {/* Logo */}
         <div className="flex items-center gap-2">
-          <img src={logo} alt="logo" className="w-12 h-12" />
-          <Link to="/" className="text-2xl font-bold text-rose-600">
+          <img
+            src={logo}
+            alt="logo"
+            className="w-12 h-12 rounded-full border-2 border-rose-500"
+          />
+          <Link
+            to="/"
+            className="text-2xl font-bold text-rose-600 tracking-wide"
+          >
             LoveKnot
           </Link>
         </div>
 
-        {/* Desktop Links */}
-        <div className="hidden md:flex flex-1 justify-center">
-          <ul className="flex gap-6 items-center text-base">{navLinks}</ul>
+        {/* Desktop links */}
+        <div className="hidden md:flex flex-1 justify-center gap-6 text-base items-center">
+          {navLinks}
         </div>
 
-        {/* Desktop Auth Buttons */}
+        {/* Desktop auth buttons */}
         <div className="hidden md:flex gap-4 font-semibold items-center">
           {user ? (
             <button
               onClick={handleLogout}
-              className="hover:text-rose-500 text-gray-700"
+              className="px-4 py-1 rounded-full border border-rose-500 text-rose-600 hover:bg-rose-500 hover:text-white transition-all duration-300"
             >
               Logout
             </button>
@@ -106,80 +112,70 @@ const Navbar = () => {
             <>
               <NavLink
                 to="/signup"
-                className={({ isActive }) =>
-                  `flex items-center gap-1 hover:text-rose-500 ${
-                    isActive ? "text-rose-600 underline" : "text-gray-700"
-                  }`
-                }
+                className="flex items-center gap-1 px-4 py-1 rounded-full border border-rose-500 text-rose-600 hover:bg-rose-500 hover:text-white transition-all duration-300"
               >
-                <FaUserPlus className="text-sm" />
-                Sign Up
+                <FaUserPlus className="text-sm" /> Sign Up
               </NavLink>
               <NavLink
                 to="/login"
-                className={({ isActive }) =>
-                  `flex items-center gap-1 hover:text-rose-500 ${
-                    isActive ? "text-rose-600 underline" : "text-gray-700"
-                  }`
-                }
+                className="flex items-center gap-1 px-4 py-1 rounded-full border border-rose-500 text-rose-600 hover:bg-rose-500 hover:text-white transition-all duration-300"
               >
-                <FaSignInAlt className="text-sm" />
-                Log In
+                <FaSignInAlt className="text-sm" /> Log In
               </NavLink>
             </>
           )}
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile menu button */}
         <div className="md:hidden">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-2xl text-rose-600 focus:outline-none"
+            className="text-2xl text-rose-600 focus:outline-none transition-transform duration-300 hover:rotate-90"
           >
             {isMenuOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Dropdown Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-white px-6 pb-6 pt-2 space-y-3">
-          <div className="flex flex-col gap-3">{navLinks}</div>
-          <div className="flex flex-col gap-3 font-semibold">
-            {user ? (
-              <button
-                onClick={() => {
-                  handleLogout();
-                  setIsMenuOpen(false);
-                }}
-                className="text-left hover:text-rose-500"
+      {/* Mobile menu */}
+      <div
+        className={`md:hidden bg-white/95 backdrop-blur-md overflow-hidden transition-all duration-500 ${
+          isMenuOpen ? "max-h-[500px] py-4" : "max-h-0"
+        }`}
+      >
+        <div className="flex flex-col gap-3 px-6">{navLinks}</div>
+        <div className="flex flex-col gap-3 px-6 mt-2 font-semibold">
+          {user ? (
+            <button
+              onClick={() => {
+                handleLogout();
+                setIsMenuOpen(false);
+              }}
+              className="text-left px-4 py-1 rounded-full border border-rose-500 text-rose-600 hover:bg-rose-500 hover:text-white transition-all duration-300"
+            >
+              Logout
+            </button>
+          ) : (
+            <>
+              <NavLink
+                to="/signup"
+                onClick={() => setIsMenuOpen(false)}
+                className="flex items-center gap-1 px-4 py-1 rounded-full border border-rose-500 text-rose-600 hover:bg-rose-500 hover:text-white transition-all duration-300"
               >
-                Logout
-              </button>
-            ) : (
-              <>
-                <NavLink
-                  to="/signup"
-                  className="flex items-center gap-1 hover:text-rose-500"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <FaUserPlus className="text-sm" />
-                  Sign Up
-                </NavLink>
-                <NavLink
-                  to="/login"
-                  className="flex items-center gap-1 hover:text-rose-500"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <FaSignInAlt className="text-sm" />
-                  Log In
-                </NavLink>
-              </>
-            )}
-          </div>
+                <FaUserPlus className="text-sm" /> Sign Up
+              </NavLink>
+              <NavLink
+                to="/login"
+                onClick={() => setIsMenuOpen(false)}
+                className="flex items-center gap-1 px-4 py-1 rounded-full border border-rose-500 text-rose-600 hover:bg-rose-500 hover:text-white transition-all duration-300"
+              >
+                <FaSignInAlt className="text-sm" /> Log In
+              </NavLink>
+            </>
+          )}
         </div>
-      )}
-    </div>
+      </div>
+    </nav>
   );
 };
 

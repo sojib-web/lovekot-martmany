@@ -6,6 +6,9 @@ import HowItWorks from "./HowItWorks/HowItWorks";
 import SuccessCounter from "./SuccessCounter/SuccessCounter";
 import CtaSection from "./CtaSection/CtaSection";
 import SuccessStories from "./fetchSuccessStories/SuccessStories";
+import BlogSection from "./BlogSection/BlogSection";
+import PricingSection from "./PricingSection/PricingSection";
+import CallToAction from "./CallToAction/CallToAction";
 
 const Home = () => {
   return (
@@ -16,6 +19,9 @@ const Home = () => {
       <HowItWorks />
       <SuccessCounter />
       <SuccessStories />
+      <BlogSection />
+      {/* <CallToAction /> */}
+      <PricingSection />
     </div>
   );
 };

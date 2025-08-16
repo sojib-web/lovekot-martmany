@@ -46,7 +46,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "login",
-        element: <Login />, // এখানে element ইউজ করো, Component নয়
+        element: <Login />,
       },
       {
         path: "contact",
