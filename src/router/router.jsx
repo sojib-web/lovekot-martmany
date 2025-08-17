@@ -23,6 +23,9 @@ import AdminRoute from "../routes/AdminRoute";
 import Forbidden from "../Components/shared/Forbidden/Forbidden";
 import DashboardRedirect from "../layout/DashboardLayout/DashboardRedirect/DashboardRedirect";
 import GotMarriedForm from "../layout/DashboardLayout/GotMarriedForm/GotMarriedForm";
+import ProfilePage from "../layout/DashboardLayout/ProfilePage/ProfilePage";
+import EditProfilePage from "../layout/DashboardLayout/EditProfilePage/EditProfilePage";
+import NotFound from "../Components/shared/NotFound/NotFound";
 // import ViewBiodata from "../layout/DashboardLayout/ViewBiodata";  // TODO: Create these pages later
 // import MyContactRequests from "../layout/DashboardLayout/MyContactRequests";
 // import Favourites from "../layout/DashboardLayout/Favourites";
@@ -76,6 +79,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      { path: "*", element: <NotFound /> },
     ],
   },
 
@@ -96,6 +100,14 @@ export const router = createBrowserRouter([
       {
         path: "married",
         element: <GotMarriedForm />,
+      },
+      {
+        path: "ProfilePage",
+        element: <ProfilePage />,
+      },
+      {
+        path: "EditProfilePage",
+        element: <EditProfilePage />,
       },
       {
         path: "edit-biodata",
@@ -145,6 +157,8 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
+      { path: "*", element: <NotFound /> },
     ],
   },
+  { path: "*", element: <NotFound /> },
 ]);

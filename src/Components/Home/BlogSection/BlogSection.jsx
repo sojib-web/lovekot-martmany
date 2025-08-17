@@ -13,8 +13,7 @@ const blogPosts = [
     title: "10 Essential Tips to Plan Your Dream Wedding",
     description:
       "From budgeting to venue selection, discover the must-know tips to make your wedding day stress-free and unforgettable.",
-    image:
-      "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80",
+    image: "https://i.ibb.co/678LkXkb/image.png",
   },
   {
     id: 2,
@@ -22,8 +21,7 @@ const blogPosts = [
     title: "How to Build Trust in a New Relationship",
     description:
       "Trust is the foundation of every successful relationship. Here are proven ways to nurture and strengthen it.",
-    image:
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+    image: "https://i.ibb.co/BHyZqrw0/image.png",
   },
   {
     id: 3,
@@ -31,8 +29,7 @@ const blogPosts = [
     title: "Rina & Arif’s LoveKnot Journey",
     description:
       "A heartwarming story of how two people found each other through LoveKnot and started a lifelong journey together.",
-    image:
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+    image: "https://i.ibb.co/NgqKMf36/image.png",
   },
   {
     id: 4,
@@ -40,8 +37,7 @@ const blogPosts = [
     title: "Shila & Hasan’s Beautiful Beginning",
     description:
       "Another inspiring story of two hearts finding each other through LoveKnot.",
-    image:
-      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80",
+    image: "https://i.ibb.co/tTP4CP6w/image.png",
   },
   {
     id: 5,
@@ -49,8 +45,7 @@ const blogPosts = [
     title: "Ayesha & Rafiq’s Journey of Love",
     description:
       "Their story proves that true love knows no boundaries when it comes to destiny.",
-    image:
-      "https://images.unsplash.com/photo-1519744346363-66f0d50a1c06?auto=format&fit=crop&w=800&q=80",
+    image: "https://i.ibb.co/6JXnF0pq/image.png",
   },
   {
     id: 6,
@@ -58,8 +53,7 @@ const blogPosts = [
     title: "Top 5 Destination Wedding Locations",
     description:
       "Dreaming of a wedding abroad? Explore the most romantic places around the world to tie the knot.",
-    image:
-      "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80",
+    image: "https://i.ibb.co/MD5hhw69/image.png",
   },
   {
     id: 7,
@@ -67,8 +61,7 @@ const blogPosts = [
     title: "Effective Communication in Relationships",
     description:
       "Learn how open and honest communication can strengthen your bond with your partner.",
-    image:
-      "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80",
+    image: "https://i.ibb.co/C5hnrVpb/image.png",
   },
   {
     id: 8,
@@ -76,8 +69,7 @@ const blogPosts = [
     title: "Balancing Career and Love Life",
     description:
       "Struggling to give time to both? Here’s how you can manage career growth without losing love.",
-    image:
-      "https://images.unsplash.com/photo-1519744346363-66f0d50a1c06?auto=format&fit=crop&w=800&q=80",
+    image: "https://i.ibb.co/HD7qXx6z/image.png",
   },
   {
     id: 9,
@@ -85,8 +77,7 @@ const blogPosts = [
     title: "Creative Wedding Decor Ideas",
     description:
       "Add magic to your special day with these trending and budget-friendly wedding decor inspirations.",
-    image:
-      "https://images.unsplash.com/photo-1549887534-3db1bd59dcca?auto=format&fit=crop&w=800&q=80",
+    image: "https://i.ibb.co/0jnyZ7d1/image.png",
   },
   {
     id: 10,
@@ -94,8 +85,7 @@ const blogPosts = [
     title: "Farhan & Meera’s Happily Ever After",
     description:
       "Read the magical journey of two strangers who found each other through LoveKnot.",
-    image:
-      "https://images.unsplash.com/photo-1509490927285-34bd4a3ab1d9?auto=format&fit=crop&w=800&q=80",
+    image: "https://i.ibb.co/7dT8vbqs/image.png",
   },
 ];
 export default function BlogSection() {

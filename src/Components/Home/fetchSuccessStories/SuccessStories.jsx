@@ -54,12 +54,12 @@ const SuccessStories = () => {
     );
 
   const sortedStories = successStories.sort(
-    (a, b) => new Date(b.marriedDate) - new Date(a.marriedDate) // ✅ correct field
+    (a, b) => new Date(b.marriedDate) - new Date(a.marriedDate)
   );
 
   return (
     <section className="py-16 bg-[#fefaf4]">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-10">
         {/* Heading */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-bold font-serif text-[#4c2e05]">

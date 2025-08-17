@@ -4,18 +4,20 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 const ContactSection = () => {
   return (
     <section className="bg-[#fffdf6] py-16">
-      <div className="text-center mb-12">
+      <div className="text-center mb-12 px-4">
         <p className="text-yellow-500 font-semibold uppercase tracking-wider">
           We're Here to Help
         </p>
-        <h2 className="text-5xl font-bold text-teal-600 my-2">Contact Us</h2>
-        <p className="text-gray-600 text-sm">
+        <h2 className="text-4xl sm:text-5xl font-bold text-teal-600 my-2">
+          Contact Us
+        </h2>
+        <p className="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto">
           Reach out to LoveKnot — Your trusted partner in finding your perfect
           match.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto px-4 sm:px-6">
         {/* Our Office */}
         <div className="bg-white shadow-lg rounded-xl p-8 space-y-4">
           <h3 className="text-xl font-bold text-blue-600">OUR OFFICE</h3>
@@ -25,19 +27,15 @@ const ContactSection = () => {
           </p>
           <div className="flex items-center gap-3 text-gray-700">
             <FaPhoneAlt className="text-rose-500" />
-            <span>+92 (8800) 68 - 8960</span>
+            <span>01743191397</span>
           </div>
           <div className="flex items-center gap-3 text-gray-700">
             <FaEnvelope className="text-rose-500" />
-            <span>support@loveknot.com</span>
+            <span>alisojib295@gmail.com</span>
           </div>
           <div className="flex items-start gap-3 text-gray-700">
             <FaMapMarkerAlt className="text-rose-500 mt-1" />
-            <span>
-              28800 Orchard Lake Road, Suite 180
-              <br />
-              Farmington Hills, MI, USA
-            </span>
+            <span>Bheramara, Kushtia, Bangladesh</span>
           </div>
         </div>
 

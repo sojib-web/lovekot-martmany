@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
 import ProfileCard from "../../Components/Home/TeamCard/ProfileCard";
 import Pagination from "../Pagination/Pagination";
+import Loader from "../shared/Loader";
 
 const divisions = [
   "All",
@@ -65,7 +66,12 @@ const BiodataPage = () => {
     setPage(1);
   }, [selectedGender, selectedAge, selectedDivision, profiles]);
 
-  if (isLoading) return <p className="text-center mt-10">Loading...</p>;
+  if (isLoading)
+    return (
+      <p className="text-center mt-10">
+        <Loader />
+      </p>
+    );
 
   return (
     <div className="bg-[#fdf9f0] min-h-screen py-10 px-4 md:px-12">

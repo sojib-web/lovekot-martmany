@@ -4,6 +4,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import useAxios from "../../../hooks/useAxios";
 import Swal from "sweetalert2";
 import Pagination from "../../../Components/Pagination/Pagination";
+import Loader from "../../../Components/shared/Loader";
 
 const ManageUsers = () => {
   const axiosSecure = useAxios();
@@ -78,7 +79,11 @@ const ManageUsers = () => {
   };
 
   if (isLoading) {
-    return <p className="text-center text-gray-500">Loading users...</p>;
+    return (
+      <p className="text-center text-gray-500">
+        <Loader />
+      </p>
+    );
   }
 
   if (isError) {

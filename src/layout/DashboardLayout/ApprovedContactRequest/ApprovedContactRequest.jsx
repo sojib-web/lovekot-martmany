@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import useAxios from "../../../hooks/useAxios";
 import Pagination from "../../../Components/Pagination/Pagination";
+import Loader from "../../../Components/shared/Loader";
 
 const ApprovedContactRequest = () => {
   const axiosSecure = useAxios();
@@ -58,7 +59,7 @@ const ApprovedContactRequest = () => {
   if (isLoading) {
     return (
       <p className="text-center text-gray-500 mt-8">
-        Loading contact requests...
+        <Loader />
       </p>
     );
   }

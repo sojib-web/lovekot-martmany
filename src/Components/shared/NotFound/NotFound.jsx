@@ -1,33 +1,25 @@
 import React from "react";
 import { Link } from "react-router";
 
-export default function CallToAction() {
+const NotFound = () => {
   return (
     <section className="py-12 px-4 relative">
       <div className="max-w-7xl mx-auto bg-[#fde9b4] rounded-2xl shadow-md text-center overflow-hidden">
         {/* Content */}
         <div className="p-10">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
-            Start Your LoveKnot Journey Today
+            Page Not Found
           </h2>
           <p className="mt-3 text-gray-700 max-w-2xl mx-auto">
-            Join thousands of happy couples who found their soulmate on
-            LoveKnot. Create your profile, browse premium members, and connect
-            with your perfect match today.
+            404 - The page you are looking for does not exist.
           </p>
 
           {/* Buttons */}
           <div className="mt-6 flex justify-center gap-4 flex-wrap">
             {/* Register Now → Signup Page এ redirect */}
-            <Link to="/signup">
+            <Link to="/">
               <button className="bg-black text-white px-6 py-3 rounded-md font-semibold uppercase hover:bg-gray-800 transition">
-                Register Now
-              </button>
-            </Link>
-
-            <Link to="/contact">
-              <button className="border border-black text-black px-6 py-3 rounded-md font-semibold uppercase hover:bg-gray-100 transition">
-                Help & Support
+                Go to Home
               </button>
             </Link>
           </div>
@@ -63,4 +55,6 @@ export default function CallToAction() {
       `}</style>
     </section>
   );
-}
+};
+
+export default NotFound;

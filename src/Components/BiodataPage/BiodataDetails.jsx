@@ -12,6 +12,7 @@ import {
   FaInstagram,
   FaLinkedinIn,
 } from "react-icons/fa";
+import Loader from "../shared/Loader";
 
 const BiodataDetails = () => {
   const { id } = useParams();
@@ -84,7 +85,12 @@ const BiodataDetails = () => {
     navigate(`/checkout/${biodata._id}`);
   };
 
-  if (isLoading) return <p className="text-center py-10">Loading biodata...</p>;
+  if (isLoading)
+    return (
+      <p className="text-center py-10">
+        <Loader />
+      </p>
+    );
   if (isError || !biodata)
     return (
       <p className="text-center py-10 text-red-500">Biodata not found ❌</p>

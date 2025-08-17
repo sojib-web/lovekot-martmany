@@ -4,6 +4,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import useAxios from "../../../hooks/useAxios";
 import Swal from "sweetalert2";
 import Pagination from "../../../Components/Pagination/Pagination";
+import Loader from "../../../Components/shared/Loader";
 
 const ApprovedPremium = () => {
   const axiosSecure = useAxios();
@@ -54,7 +55,12 @@ const ApprovedPremium = () => {
   };
 
   if (isLoading)
-    return <p className="text-center text-gray-500 mt-8">Loading...</p>;
+    return (
+      <p className="text-center text-gray-500 mt-8">
+        <Loader />
+        Loading approved premium requests...
+      </p>
+    );
   if (isError)
     return <p className="text-center text-red-500 mt-8">Error loading data.</p>;
 

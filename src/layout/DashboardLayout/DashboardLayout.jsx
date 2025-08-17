@@ -15,6 +15,7 @@ import {
 } from "react-icons/fa";
 import { useAuth } from "../../hooks/useAuth";
 import useUserRole from "../../hooks/useUserRole";
+import Loader from "../../Components/shared/Loader";
 
 const DashboardLayout = () => {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ const DashboardLayout = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        Loading...
+        <Loader />
       </div>
     );
   }
@@ -43,6 +44,7 @@ const DashboardLayout = () => {
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col min-h-screen">
+        {/* Mobile Navbar */}
         <div className="navbar bg-base-300 lg:hidden w-full">
           <div className="flex-none">
             <label htmlFor="my-drawer-2" className="btn btn-square btn-ghost">
@@ -65,6 +67,7 @@ const DashboardLayout = () => {
           <div className="flex-1 px-2 text-xl font-semibold">Dashboard</div>
         </div>
 
+        {/* Main Content */}
         <div className="p-6 bg-gradient-to-b from-rose-50 to-amber-50 border-r border-gray-200 flex-grow overflow-auto">
           <Outlet />
         </div>
@@ -74,6 +77,7 @@ const DashboardLayout = () => {
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <div className="flex flex-col w-80 h-full bg-gradient-to-b from-rose-50 to-amber-50 border-r border-gray-200">
+          {/* Sidebar Header */}
           <div className="p-4 border-b border-rose-200 font-bold text-lg">
             <div className="flex items-center gap-2">
               <img src={logo} alt="logo" className="w-12 h-12 rounded-lg" />
@@ -83,7 +87,15 @@ const DashboardLayout = () => {
             </div>
           </div>
 
+          {/* Sidebar Menu */}
           <ul className="menu flex-1 overflow-y-auto p-4 space-y-2">
+            {/* ----------- Common for all users ----------- */}
+            <li>
+              <NavLink to="/dashboard/ProfilePage" className={getActiveClass}>
+                <FaUserEdit /> Profile Page
+              </NavLink>
+            </li>
+
             {/* ----------- Normal User Menu ----------- */}
             {role === "normal" && (
               <>
@@ -127,7 +139,7 @@ const DashboardLayout = () => {
               </>
             )}
 
-            {/* ----------- Admin Menu ----------- */}
+            {/* ----------- Premium / Admin Menu ----------- */}
             {role === "premium" && (
               <>
                 <li>
@@ -165,7 +177,7 @@ const DashboardLayout = () => {
               </>
             )}
 
-            {/* Logout */}
+            {/* Logout Button */}
             <li className="mt-auto">
               <button
                 onClick={handleLogout}

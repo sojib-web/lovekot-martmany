@@ -20,6 +20,7 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
+import Loader from "../../../Components/shared/Loader";
 
 const AdminOverview = () => {
   const axiosSecure = useAxios();
@@ -35,7 +36,7 @@ const AdminOverview = () => {
   if (isLoading) {
     return (
       <p className="text-center py-10 text-xl text-rose-600 animate-pulse">
-        Loading admin stats...
+        <Loader />
       </p>
     );
   }

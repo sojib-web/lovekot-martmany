@@ -1,10 +1,15 @@
+// @ts-nocheck
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
 import CountUp from "react-countup";
 import { useQuery } from "@tanstack/react-query";
-import { FaHeart, FaUsers, FaMale, FaFemale } from "react-icons/fa";
 import useAxios from "../../../hooks/useAxios";
 import decorationImg from "../../../assets/banner/1.png";
+import Img from "../../../assets/banner/couple.png";
+import Img1 from "../../../assets/banner/login.png";
+import Img2 from "../../../assets/banner/man.png";
+import Img3 from "../../../assets/banner/businesswoman.png";
+import Loader from "../../shared/Loader";
 
 const SuccessCounter = () => {
   const axiosSecure = useAxios();
@@ -17,7 +22,12 @@ const SuccessCounter = () => {
     },
   });
 
-  if (isLoading) return <p className="text-center mt-10">Loading...</p>;
+  if (isLoading)
+    return (
+      <p className="text-center mt-10">
+        <Loader />
+      </p>
+    );
   if (error)
     return (
       <p className="text-center mt-10 text-red-500">Failed to load stats.</p>
@@ -25,28 +35,28 @@ const SuccessCounter = () => {
 
   const stats = [
     {
-      icon: <FaHeart className="text-white text-2xl" />,
+      icon: Img,
       value: data.marriagesCount,
       label: "COUPLES PAIRED",
-      bgColor: "bg-pink-500",
+      gradient: "from-pink-400 to-rose-500",
     },
     {
-      icon: <FaUsers className="text-white text-2xl" />,
+      icon: Img1,
       value: data.totalProfiles,
       label: "REGISTERED USERS",
-      bgColor: "bg-yellow-500",
+      gradient: "from-yellow-400 to-orange-500",
     },
     {
-      icon: <FaMale className="text-white text-2xl" />,
+      icon: Img2,
       value: data.boysCount,
       label: "MEN'S BIODATA",
-      bgColor: "bg-blue-500",
+      gradient: "from-blue-400 to-indigo-500",
     },
     {
-      icon: <FaFemale className="text-white text-2xl" />,
+      icon: Img3,
       value: data.girlsCount,
       label: "WOMEN'S BIODATA",
-      bgColor: "bg-purple-500",
+      gradient: "from-purple-400 to-fuchsia-500",
     },
   ];
 
@@ -55,10 +65,10 @@ const SuccessCounter = () => {
       {/* Heading */}
       <div className="text-center mb-16 relative z-10">
         <p className="uppercase text-sm tracking-widest text-gray-500">
-          Our Achievements
+          Celebrating Milestones
         </p>
         <h2 className="text-3xl md:text-5xl font-bold text-[#4c2e05] mt-2">
-          LoveKnot Success Stories
+          LoveKnot Achievements & Success Stories
         </h2>
         <div className="flex items-center justify-center mt-6 space-x-4">
           <span className="h-px w-16 md:w-24 bg-pink-300"></span>
@@ -80,12 +90,12 @@ const SuccessCounter = () => {
         {stats.map((item, index) => (
           <div
             key={index}
-            className="backdrop-blur-md bg-white/40 border border-white/30 rounded-3xl p-8 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-all duration-500"
+            className="backdrop-blur-md bg-white/50 border border-white/30 rounded-3xl p-8 flex flex-col items-center text-center shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-500"
           >
             <div
-              className={`w-20 h-20 flex items-center justify-center rounded-full mb-4 ${item.bgColor} text-white text-3xl`}
+              className={`w-24 h-24 flex items-center justify-center rounded-full mb-6 bg-gradient-to-r ${item.gradient} shadow-lg`}
             >
-              {item.icon}
+              <img src={item.icon} alt={item.label} className="w-12 h-12" />
             </div>
             <h3 className="text-4xl font-extrabold text-[#4c2e05]">
               <CountUp start={0} end={item.value} duration={2} separator="," />+

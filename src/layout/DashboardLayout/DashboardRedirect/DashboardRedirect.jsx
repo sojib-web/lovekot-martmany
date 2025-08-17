@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../../hooks/useAuth";
 import useUserRole from "../../../hooks/useUserRole";
+import Loader from "../../../Components/shared/Loader";
 
 const DashboardRedirect = () => {
   const { user } = useAuth();
@@ -18,14 +19,14 @@ const DashboardRedirect = () => {
       if (role === "premium") {
         navigate("/dashboard/admin-dashboard");
       } else {
-        navigate("/dashboard/edit-biodata");
+        navigate("/dashboard/ProfilePage");
       }
     }
   }, [user, role, isLoading, navigate]);
 
   return (
     <div className="flex justify-center items-center h-screen text-lg font-semibold">
-      ড্যাশবোর্ড লোড হচ্ছে...
+      <Loader />
     </div>
   );
 };
