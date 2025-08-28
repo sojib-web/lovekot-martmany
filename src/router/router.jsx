@@ -26,6 +26,7 @@ import GotMarriedForm from "../layout/DashboardLayout/GotMarriedForm/GotMarriedF
 import ProfilePage from "../layout/DashboardLayout/ProfilePage/ProfilePage";
 import EditProfilePage from "../layout/DashboardLayout/EditProfilePage/EditProfilePage";
 import NotFound from "../Components/shared/NotFound/NotFound";
+import MyMatches from "@/layout/DashboardLayout/MyMatches/MyMatches";
 // import ViewBiodata from "../layout/DashboardLayout/ViewBiodata";  // TODO: Create these pages later
 // import MyContactRequests from "../layout/DashboardLayout/MyContactRequests";
 // import Favourites from "../layout/DashboardLayout/Favourites";
@@ -125,6 +126,11 @@ export const router = createBrowserRouter([
         path: "favourites-biodata",
         element: <MyFavorites />,
       },
+
+      {
+        path: "my-matches",
+        element: <MyMatches />,
+      },
       {
         path: "admin-dashboard",
         element: (
@@ -157,6 +163,7 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
+
       { path: "*", element: <NotFound /> },
     ],
   },

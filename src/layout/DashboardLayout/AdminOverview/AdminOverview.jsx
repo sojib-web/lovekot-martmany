@@ -9,18 +9,23 @@ import {
   FaMoneyBillWave,
 } from "react-icons/fa";
 
+// Shadcn UI
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import Loader from "../../../Components/shared/Loader";
+
+// Recharts
 import {
-  ComposedChart,
-  Bar,
-  Line,
+  ResponsiveContainer,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
+  CartesianGrid,
   Tooltip,
   Legend,
-  ResponsiveContainer,
-  CartesianGrid,
 } from "recharts";
-import Loader from "../../../Components/shared/Loader";
 
 const AdminOverview = () => {
   const axiosSecure = useAxios();
@@ -44,93 +49,131 @@ const AdminOverview = () => {
   const { totalBiodata, maleCount, femaleCount, premiumCount, totalRevenue } =
     stats;
 
-  const cardClass =
-    "bg-white rounded-xl shadow-md p-6 text-center border border-rose-200";
+  const cardClass = "border border-rose-200 hover:shadow-lg transition-all";
 
-  // Chart data
-  const data = [
-    { name: "Total Biodata", count: totalBiodata, revenue: totalRevenue },
+  const chartData = [
+    { name: "Total", count: totalBiodata, revenue: totalRevenue },
     { name: "Male", count: maleCount, revenue: totalRevenue * 0.3 },
     { name: "Female", count: femaleCount, revenue: totalRevenue * 0.3 },
     { name: "Premium", count: premiumCount, revenue: totalRevenue * 0.4 },
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-12">
+    <div className="max-w-7xl mx-auto px-6 py-12 space-y-12">
       <h1 className="text-4xl font-bold text-center mb-10 bg-gradient-to-r from-rose-600 to-yellow-400 text-transparent bg-clip-text">
         Admin Dashboard Overview
       </h1>
 
-      {/* Cards Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-        <div className={cardClass}>
-          <FaUsers className="text-3xl text-rose-600 mx-auto mb-2" />
-          <p className="text-lg font-semibold">Total Biodata</p>
-          <p className="text-2xl font-bold text-rose-700">{totalBiodata}</p>
-        </div>
-        <div className={cardClass}>
-          <FaMale className="text-3xl text-blue-600 mx-auto mb-2" />
-          <p className="text-lg font-semibold">Male Biodata</p>
-          <p className="text-2xl font-bold text-blue-700">{maleCount}</p>
-        </div>
-        <div className={cardClass}>
-          <FaFemale className="text-3xl text-pink-500 mx-auto mb-2" />
-          <p className="text-lg font-semibold">Female Biodata</p>
-          <p className="text-2xl font-bold text-pink-600">{femaleCount}</p>
-        </div>
-        <div className={cardClass}>
-          <FaStar className="text-3xl text-yellow-500 mx-auto mb-2" />
-          <p className="text-lg font-semibold">Premium Biodata</p>
-          <p className="text-2xl font-bold text-yellow-600">{premiumCount}</p>
-        </div>
-        <div className={cardClass}>
-          <FaMoneyBillWave className="text-3xl text-green-500 mx-auto mb-2" />
-          <p className="text-lg font-semibold">Total Revenue</p>
-          <p className="text-2xl font-bold text-green-600">৳ {totalRevenue}</p>
-        </div>
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Card className={cardClass}>
+          <CardHeader className="text-center">
+            <FaUsers className="text-3xl text-rose-600 mx-auto mb-2" />
+            <CardTitle>Total Biodata</CardTitle>
+          </CardHeader>
+          <CardContent className="text-2xl font-bold text-rose-700 text-center">
+            {totalBiodata}
+          </CardContent>
+        </Card>
+
+        <Card className={cardClass}>
+          <CardHeader className="text-center">
+            <FaMale className="text-3xl text-blue-600 mx-auto mb-2" />
+            <CardTitle>Male Biodata</CardTitle>
+          </CardHeader>
+          <CardContent className="text-2xl font-bold text-blue-700 text-center">
+            {maleCount}
+          </CardContent>
+        </Card>
+
+        <Card className={cardClass}>
+          <CardHeader className="text-center">
+            <FaFemale className="text-3xl text-pink-500 mx-auto mb-2" />
+            <CardTitle>Female Biodata</CardTitle>
+          </CardHeader>
+          <CardContent className="text-2xl font-bold text-pink-600 text-center">
+            {femaleCount}
+          </CardContent>
+        </Card>
+
+        <Card className={cardClass}>
+          <CardHeader className="text-center">
+            <FaStar className="text-3xl text-yellow-500 mx-auto mb-2" />
+            <CardTitle>Premium Biodata</CardTitle>
+          </CardHeader>
+          <CardContent className="text-2xl font-bold text-yellow-600 text-center">
+            {premiumCount}
+          </CardContent>
+        </Card>
+
+        <Card className={cardClass}>
+          <CardHeader className="text-center">
+            <FaMoneyBillWave className="text-3xl text-green-500 mx-auto mb-2" />
+            <CardTitle>Total Revenue</CardTitle>
+          </CardHeader>
+          <CardContent className="text-2xl font-bold text-green-600 text-center">
+            ৳ {totalRevenue}
+          </CardContent>
+        </Card>
       </div>
 
-      {/* Chart Section */}
-      <div style={{ width: "100%", height: 400 }}>
-        <ResponsiveContainer>
-          <ComposedChart
-            data={data}
-            margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
-            <YAxis
-              yAxisId="right"
-              orientation="right"
-              stroke="#82ca9d"
-              tickFormatter={(value) => `৳${value}`}
-            />
-            <Tooltip formatter={(value) => value.toLocaleString()} />
-            <Legend />
-            {/* Bar for counts */}
-            <Bar
-              yAxisId="left"
-              dataKey="count"
-              fill="#f9196f"
-              barSize={40}
-              radius={[10, 10, 0, 0]}
-              name="Count"
-            />
-            {/* Line for revenue */}
-            <Line
-              yAxisId="right"
-              type="monotone"
-              dataKey="revenue"
-              stroke="#82ca9d"
-              strokeWidth={3}
-              dot={{ r: 5 }}
-              activeDot={{ r: 8 }}
-              name="Revenue (৳)"
-            />
-          </ComposedChart>
-        </ResponsiveContainer>
-      </div>
+      {/* Area Chart */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-xl font-bold text-center">
+            Biodata & Revenue Area Chart
+          </CardTitle>
+          <Separator className="my-2" />
+        </CardHeader>
+        <CardContent style={{ width: "100%", height: 400 }}>
+          <ResponsiveContainer>
+            <AreaChart
+              data={chartData}
+              margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+            >
+              <defs>
+                <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#f9196f" stopOpacity={0.7} />
+                  <stop offset="95%" stopColor="#f9196f" stopOpacity={0} />
+                </linearGradient>
+                <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.7} />
+                  <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <XAxis dataKey="name" />
+              <YAxis yAxisId="left" orientation="left" stroke="#f9196f" />
+              <YAxis
+                yAxisId="right"
+                orientation="right"
+                stroke="#82ca9d"
+                tickFormatter={(value) => `৳${value}`}
+              />
+              <CartesianGrid strokeDasharray="3 3" />
+              <Tooltip formatter={(value) => value.toLocaleString()} />
+              <Legend />
+              <Area
+                yAxisId="left"
+                type="monotone"
+                dataKey="count"
+                stroke="#f9196f"
+                fillOpacity={1}
+                fill="url(#colorCount)"
+                name="Biodata Count"
+              />
+              <Area
+                yAxisId="right"
+                type="monotone"
+                dataKey="revenue"
+                stroke="#82ca9d"
+                fillOpacity={1}
+                fill="url(#colorRevenue)"
+                name="Revenue (৳)"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router";
 import logo from "../../assets/logo.avif";
 import {
@@ -12,6 +12,9 @@ import {
   FaStar,
   FaCheckCircle,
   FaTachometerAlt,
+  FaCog,
+  FaMoneyBillWave,
+  FaChevronDown,
 } from "react-icons/fa";
 import { useAuth } from "../../hooks/useAuth";
 import useUserRole from "../../hooks/useUserRole";
@@ -21,6 +24,9 @@ const DashboardLayout = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { role, isLoading } = useUserRole(user?.email);
+
+  const [userMenuOpen, setUserMenuOpen] = useState(true);
+  const [adminMenuOpen, setAdminMenuOpen] = useState(true);
 
   const handleLogout = () => {
     alert("Logging out...");
@@ -99,81 +105,197 @@ const DashboardLayout = () => {
             {/* ----------- Normal User Menu ----------- */}
             {role === "normal" && (
               <>
-                <li>
-                  <NavLink to="/dashboard/married" className={getActiveClass}>
-                    <FaUserEdit /> Got Married Form
-                  </NavLink>
+                <li
+                  className="mb-1 cursor-pointer"
+                  onClick={() => setUserMenuOpen(!userMenuOpen)}
+                >
+                  <div className="flex justify-between items-center px-2 py-1 font-semibold text-gray-700 hover:bg-rose-100 rounded">
+                    User Features{" "}
+                    <FaChevronDown
+                      className={`transition-transform ${
+                        userMenuOpen ? "rotate-180" : "rotate-0"
+                      }`}
+                    />
+                  </div>
                 </li>
-                <li>
-                  <NavLink
-                    to="/dashboard/edit-biodata"
-                    className={getActiveClass}
-                  >
-                    <FaUserEdit /> Edit Biodata
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/dashboard/view-biodata"
-                    className={getActiveClass}
-                  >
-                    <FaRegEye /> View Biodata
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/dashboard/my-contact-requests"
-                    className={getActiveClass}
-                  >
-                    <FaEnvelopeOpenText /> My Contact Request
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/dashboard/favourites-biodata"
-                    className={getActiveClass}
-                  >
-                    <FaHeart /> Favourites Biodata
-                  </NavLink>
-                </li>
+                {userMenuOpen && (
+                  <ul className="pl-4 space-y-1">
+                    <li>
+                      <NavLink
+                        to="/dashboard/married"
+                        className={getActiveClass}
+                      >
+                        <FaUserEdit /> Got Married Form
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/edit-biodata"
+                        className={getActiveClass}
+                      >
+                        <FaUserEdit /> Edit Biodata
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/view-biodata"
+                        className={getActiveClass}
+                      >
+                        <FaRegEye /> View Biodata
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/my-contact-requests"
+                        className={getActiveClass}
+                      >
+                        <FaEnvelopeOpenText /> My Contact Request
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/favourites-biodata"
+                        className={getActiveClass}
+                      >
+                        <FaHeart /> Favourites Biodata
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/my-matches"
+                        className={getActiveClass}
+                      >
+                        <FaUsers /> My Matches
+                      </NavLink>
+                    </li>
+
+                    <li>
+                      <NavLink
+                        to="/dashboard/messages"
+                        className={getActiveClass}
+                      >
+                        <FaEnvelopeOpenText /> Messages{" "}
+                        <span className="ml-1 badge badge-xs badge-primary">
+                          3
+                        </span>
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/upgrade"
+                        className={getActiveClass}
+                      >
+                        <FaStar /> Upgrade to Premium
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/payment-history"
+                        className={getActiveClass}
+                      >
+                        <FaMoneyBillWave /> Payment History
+                      </NavLink>
+                    </li>
+                  </ul>
+                )}
               </>
             )}
 
             {/* ----------- Premium / Admin Menu ----------- */}
             {role === "premium" && (
               <>
-                <li>
-                  <NavLink
-                    to="/dashboard/admin-dashboard"
-                    className={getActiveClass}
-                  >
-                    <FaTachometerAlt /> Admin Dashboard
-                  </NavLink>
+                <li
+                  className="mb-1 cursor-pointer"
+                  onClick={() => setAdminMenuOpen(!adminMenuOpen)}
+                >
+                  <div className="flex justify-between items-center px-2 py-1 font-semibold text-gray-700 hover:bg-rose-100 rounded">
+                    Admin Features{" "}
+                    <FaChevronDown
+                      className={`transition-transform ${
+                        adminMenuOpen ? "rotate-180" : "rotate-0"
+                      }`}
+                    />
+                  </div>
                 </li>
-                <li>
-                  <NavLink
-                    to="/dashboard/admin-users"
-                    className={getActiveClass}
-                  >
-                    <FaUsers /> Manage Users
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/dashboard/approved-premium"
-                    className={getActiveClass}
-                  >
-                    <FaStar /> Approved Premium
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/dashboard/approved-contact-request"
-                    className={getActiveClass}
-                  >
-                    <FaCheckCircle /> Approved Contact Request
-                  </NavLink>
-                </li>
+                {adminMenuOpen && (
+                  <ul className="pl-4 space-y-1">
+                    <li>
+                      <NavLink
+                        to="/dashboard/admin-dashboard"
+                        className={getActiveClass}
+                      >
+                        <FaTachometerAlt /> Admin Dashboard
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/admin-users"
+                        className={getActiveClass}
+                      >
+                        <FaUsers /> Manage Users
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/approved-premium"
+                        className={getActiveClass}
+                      >
+                        <FaStar /> Approved Premium
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/approved-contact-request"
+                        className={getActiveClass}
+                      >
+                        <FaCheckCircle /> Approved Contact Request
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/analytics"
+                        className={getActiveClass}
+                      >
+                        <FaTachometerAlt /> Analytics
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/premium-requests"
+                        className={getActiveClass}
+                      >
+                        <FaStar /> Premium Requests{" "}
+                        <span className="ml-1 badge badge-xs badge-warning">
+                          5
+                        </span>
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/success-stories"
+                        className={getActiveClass}
+                      >
+                        <FaHeart /> Success Stories
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/testimonials"
+                        className={getActiveClass}
+                      >
+                        <FaCheckCircle /> Testimonials
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/settings"
+                        className={getActiveClass}
+                      >
+                        <FaCog /> Settings
+                      </NavLink>
+                    </li>
+                  </ul>
+                )}
               </>
             )}
 
